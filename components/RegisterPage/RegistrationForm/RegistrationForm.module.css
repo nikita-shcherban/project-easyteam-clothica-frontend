@@ -133,8 +133,11 @@
 .submit:hover:not(:disabled),
 .submit:focus-visible:not(:disabled) {
   background-color: #9db484;
+  border-color: #4e5a42;
 }
 
 .submit:active:not(:disabled) {
   background-color: #3b4331;
+  border-color: #c5e1a5;
+  color: #fff;
 }
