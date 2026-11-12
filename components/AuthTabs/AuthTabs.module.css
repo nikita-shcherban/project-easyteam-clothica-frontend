@@ -1,0 +1,27 @@
+.tabs {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tab,
+.activeTab {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  color: #000;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.activeTab {
+  border-bottom: 1px solid rgb(0 0 0 / 20%);
+}
+
+.tab:hover,
+.activeTab:hover {
+  color: #526444;
+}
