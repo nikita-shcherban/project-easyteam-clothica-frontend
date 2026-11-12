@@ -40,7 +40,7 @@ const registrationSchema = Yup.object({
     .test(
       'upperase-required',
       'Має містити хоча б одну велику літеру',
-      (value) => !value || /[A-Z]/.test(value),
+      (value) => !value || /[A-ZА-Я]/.test(value),
     )
     .test(
       'special-character-required',
@@ -50,7 +50,7 @@ const registrationSchema = Yup.object({
     .test(
       'lowercase-required',
       'Має містити хоча б одну малу літеру',
-      (value) => !value || /[a-z]/.test(value),
+      (value) => !value || /[a-zа-я]/.test(value),
     )
     .required('Введіть пароль.'),
 });
