@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-// Requests stay on the frontend origin; session cookies are HttpOnly.
+// Requests go directly to the backend; session cookies are included.
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
   timeout: 20_000,
   withCredentials: true,
-  headers: { 'Content-Type': 'application/json' },
 });
