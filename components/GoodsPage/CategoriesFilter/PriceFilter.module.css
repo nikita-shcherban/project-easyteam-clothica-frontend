@@ -1,0 +1,7 @@
+.slider { padding: 8px 10px 0; }
+.values { display: flex; justify-content: space-between; margin-top: 14px; font-size: 18px; }
+.slider :global(.rc-slider) { height: 20px; padding: 8px 0; }
+.slider :global(.rc-slider-rail) { height: 3px; background: #e6ebe0; }
+.slider :global(.rc-slider-track) { height: 3px; background: #000; }
+.slider :global(.rc-slider-handle) { width: 18px; height: 18px; margin-top: -8px; border: 1px solid #c9cdc4; background: #fff; opacity: 1; box-shadow: 0 1px 3px rgb(0 0 0 / 0.2); }
+.slider :global(.rc-slider-handle-dragging) { border-color: #000; box-shadow: 0 0 0 3px rgb(0 0 0 / 0.15); }

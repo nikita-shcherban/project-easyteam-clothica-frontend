@@ -1,0 +1,29 @@
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.title { margin: 0; font-size: 24px; font-weight: 400; }
+.link { padding: 0; border: 0; background: none; font-size: 16px; }
+.link:hover { text-decoration: underline; }
+.count { margin: 16px 0 24px; font-size: 14px; }
+.toggle { display: none; }
+.body { display: block; }
+.categories { display: flex; flex-direction: column; gap: 14px; margin: 0 0 24px; padding: 0; list-style: none; }
+.categories button { padding: 0; border: 0; background: none; font-size: 16px; text-align: left; }
+.categories button:hover { text-decoration: underline; }
+.categories .active { font-weight: 700; text-decoration: underline; }
+.group { padding: 24px 0; border-top: 1px solid #c9cdc4; }
+.group:last-child { border-bottom: 1px solid #c9cdc4; }
+.groupTitle { margin: 0; font-size: 18px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.option { display: flex; align-items: center; gap: 8px; font-size: 16px; cursor: pointer; }
+.checkbox, .radio { appearance: none; flex: none; width: 20px; height: 20px; margin: 0; border: 1px solid #c9cdc4; background: #fff; cursor: pointer; }
+.checkbox { border-radius: 5px; }
+.checkbox:checked { border-color: #000; background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.radio { border-radius: 50%; }
+.radio:checked { border-color: #000; background: radial-gradient(#fff 0 3px, #000 4px); }
+.flip { transform: rotate(180deg); }
+
+@media (max-width: 767px) {
+  .toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 16px; border: 1px solid #c9cdc4; border-radius: 24px; background: none; font-size: 16px; }
+  .count { margin: 8px 0 12px; }
+  .body { display: none; margin-top: 16px; }
+  .open { display: block; }
+}

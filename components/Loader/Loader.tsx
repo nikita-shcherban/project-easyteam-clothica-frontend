@@ -1,33 +1,9 @@
-interface LoaderProps {
-  fullScreen?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-}
+import s from './Loader.module.css';
 
-export default function Loader({
-  fullScreen = false,
-  size = 'md',
-}: LoaderProps) {
-  const sizeClasses = {
-    sm: 'w-5 h-5 border-2',
-    md: 'w-10 h-10 border-4',
-    lg: 'w-16 h-16 border-4',
-  };
-
-  const spinner = (
-    <div
-      className={`${sizeClasses[size]} border-gray-200 border-t-blue-600 rounded-full animate-spin`}
-      role="status"
-      aria-label="Загрузка"
-    />
+export default function Loader({ overlay = false }: { overlay?: boolean }) {
+  return (
+    <div className={overlay ? `${s.loader} ${s.overlay}` : s.loader} role="status" aria-label="Завантаження">
+      <span className={s.spinner} />
+    </div>
   );
-
-  if (fullScreen) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
-        {spinner}
-      </div>
-    );
-  }
-
-  return <div className="flex justify-center items-center p-4">{spinner}</div>;
 }
