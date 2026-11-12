@@ -1,0 +1,4 @@
+.wrap { position: relative; min-height: 240px; }
+.list { display: grid; grid-template-columns: 1fr; gap: 24px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .list { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+@media (min-width: 1280px) { .list { grid-template-columns: repeat(3, 1fr); } }

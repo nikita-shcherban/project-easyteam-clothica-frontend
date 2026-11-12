@@ -1,0 +1,14 @@
+.card { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; background: #e6ebe0; }
+.info { display: grid; grid-template-columns: 1fr; grid-template-areas: 'name' 'meta' 'price'; gap: 4px 12px; flex: 1; align-content: start; }
+.name { grid-area: name; margin: 0; font-size: 18px; font-weight: 600; line-height: 1.4; }
+.price { grid-area: price; margin: 8px 0 0; font-size: 16px; }
+.meta { grid-area: meta; display: flex; gap: 12px; margin: 0; font-size: 12px; }
+.metaItem { display: inline-flex; align-items: center; gap: 4px; }
+.btn { display: block; padding: 10px; border-radius: 20px; background: #e6ebe0; text-align: center; text-decoration: none; color: inherit; font-size: 16px; }
+.btn:hover { background: #d9e0d1; }
+@media (min-width: 1280px) {
+  .info { grid-template-columns: 1fr auto; grid-template-areas: 'name price' 'meta meta'; }
+  .price { margin: 0; font-size: 22px; font-weight: 600; }
+}
+@media (max-width: 767px) { .name { font-size: 16px; } }
