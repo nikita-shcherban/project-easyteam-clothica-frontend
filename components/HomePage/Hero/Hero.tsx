@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./Hero.module.css";
+import Link from 'next/link';
+import styles from './Hero.module.css';
 
 export function Hero() {
   return (
@@ -18,23 +17,62 @@ export function Hero() {
               і завжди будуть актуальними.
             </p>
             <div className={styles.actions}>
-              <Link href="/goods" className={styles.primaryButton}>
+              <Link href="#popular-goods" className={styles.primaryButton}>
                 До товарів
               </Link>
-              <Link href="/categories" className={styles.secondaryButton}>
+              <Link
+                href="#popular-categories"
+                className={styles.secondaryButton}
+              >
                 Дослідити категорії
               </Link>
             </div>
           </div>
           <div className={styles.imageWrapper}>
-            <Image
-              src="/images/hero.png"
-              alt="Стильний базовий одяг Clothica"
-              width={640}
-              height={394}
-              priority
-              className={styles.image}
-            />
+            <picture className={styles.picture}>
+              {/* Desktop: min-width: 1440px */}
+              <source
+                media="(min-width: 1440px)"
+                type="image/webp"
+                srcSet="/images/hero-desktop@1x.webp 1x, /images/hero-desktop@2x.webp 2x"
+              />
+              <source
+                media="(min-width: 1440px)"
+                type="image/png"
+                srcSet="/images/hero-desktop@1x.png 1x, /images/hero-desktop@2x.png 2x"
+              />
+
+              {/* Tablet: min-width: 768px */}
+              <source
+                media="(min-width: 768px)"
+                type="image/webp"
+                srcSet="/images/hero-tablet@1x.webp 1x, /images/hero-tablet@2x.webp 2x"
+              />
+              <source
+                media="(min-width: 768px)"
+                type="image/png"
+                srcSet="/images/hero-tablet@1x.png 1x, /images/hero-tablet@2x.png 2x"
+              />
+
+              {/* Mobile: default (< 768px) */}
+              <source
+                type="image/webp"
+                srcSet="/images/hero-mobile@1x.webp 1x, /images/hero-mobile@2x.webp 2x"
+              />
+              <source
+                type="image/png"
+                srcSet="/images/hero-mobile@1x.png 1x, /images/hero-mobile@2x.png 2x"
+              />
+
+              <img
+                src="/images/hero-desktop@1x.webp"
+                alt="Стильний базовий одяг Clothica"
+                width={640}
+                height={394}
+                className={styles.image}
+                loading="eager"
+              />
+            </picture>
           </div>
         </div>
       </div>
