@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3000';
+// Requests stay on the frontend origin; session cookies are HttpOnly.
 export const api = axios.create({
-  baseURL: BACKEND_URL,
+  baseURL: '/api',
+  timeout: 20_000,
   withCredentials: true,
+  headers: { 'Content-Type': 'application/json' },
 });
