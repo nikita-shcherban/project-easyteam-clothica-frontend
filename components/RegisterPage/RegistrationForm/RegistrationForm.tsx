@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import { Formik, type FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { registerUser, type RegisterUserData } from '@/lib/api/server-api';
+import { registerUser, type RegisterUserData } from '@/lib/api/client-api';
 import css from './RegistrationForm.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
