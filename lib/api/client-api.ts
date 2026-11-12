@@ -7,5 +7,5 @@ export interface RegisterUserData {
 }
 
 export const registerUser = async (user: RegisterUserData): Promise<void> => {
-  await api.post('/auth/register', user);
+  await api.post('/api/auth/register', user);
 };
