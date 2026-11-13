@@ -22,3 +22,18 @@ export function getAuthErrorMessage(error: unknown): string {
   }
   return 'Не вдалося виконати запит. Спробуйте ще раз пізніше.';
 }
+
+export function getRegistrationErrorMessage(error: unknown): string {
+  if (axios.isAxiosError<{ message?: string }>(error)) {
+    if (error.response?.status === 409) {
+      return 'Користувач із таким номером телефону вже зареєстрований.';
+    }
+
+    return (
+      error.response?.data?.message ??
+      'Не вдалося зареєструватися. Спробуйте ще раз.'
+    );
+  }
+
+  return getAuthErrorMessage(error);
+}

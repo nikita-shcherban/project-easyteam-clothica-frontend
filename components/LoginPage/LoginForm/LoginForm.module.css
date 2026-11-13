@@ -29,6 +29,24 @@
   font: inherit;
 }
 
+input.placeholderColor {
+  color: rgb(0 0 0 / 60%);
+  opacity: 1;
+}
+
+input.normalColor {
+  color: var(--auth-text);
+}
+
+.passwordInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.input.passwordInput {
+  padding-right: 48px;
+}
+
 .input::placeholder {
   color: rgb(0 0 0 / 60%);
   opacity: 1;
@@ -36,16 +54,10 @@
 .input:focus {
   border-color: var(--auth-accent);
 }
-.input:focus-visible {
-  outline: 2px solid var(--auth-accent);
-  outline-offset: 1px;
-}
+
 .input[aria-invalid='true'] {
   border-color: var(--auth-error);
   color: var(--auth-error);
-}
-.input[aria-invalid='true']:focus-visible {
-  outline-color: var(--auth-error);
 }
 
 .error {
