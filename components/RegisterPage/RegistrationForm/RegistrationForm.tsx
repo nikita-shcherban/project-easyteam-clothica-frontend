@@ -1,19 +1,18 @@
 'use client';
 
-import axios from 'axios';
-import { useMutation } from '@tanstack/react-query';
-import { Formik, type FormikHelpers } from 'formik';
+import { Formik } from 'formik';
 import AuthField from '@/components/Auth/AuthField';
 import PasswordVisibilityToggle from '@/components/Auth/PasswordVisibilityToggle';
 import LoginPhoneField from '@/components/LoginPage/LoginPhoneField';
 import {
-  register as registerUser,
+  register,
   type RegisterUserData,
 } from '@/lib/api/client-api';
+import { getRegistrationErrorMessage } from '@/lib/auth/errors';
+import { useAuthSubmit } from '@/lib/hooks/useAuthSubmit';
 import { registrationSchema } from '@/lib/validation/auth';
 import css from './RegistrationForm.module.css';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const initialValues: RegisterUserData = {
   username: '',
@@ -21,58 +20,29 @@ const initialValues: RegisterUserData = {
   password: '',
 };
 
-function getErrorMessage(error: unknown): string {
-  if (axios.isAxiosError<{ message?: string }>(error)) {
-    if (error.response?.status === 409) {
-      return 'Користувач із таким номером телефону вже зареєстрований.';
-    }
-
-    return (
-      error.response?.data?.message ??
-      'Не вдалося зареєструватися. Спробуйте ще раз.'
-    );
-  }
-
-  return 'Сталася неочікувана помилка. Спробуйте ще раз.';
-}
-
 export default function RegistrationForm() {
-  const registrationMutation = useMutation({
-    mutationFn: registerUser,
-  });
+  const { submit, error, redirecting } = useAuthSubmit(
+    register,
+    getRegistrationErrorMessage,
+  );
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const { push } = useRouter();
-
-  const handleSubmit = (
-    values: RegisterUserData,
-    helpers: FormikHelpers<RegisterUserData>,
-  ) => {
-    helpers.setStatus(undefined);
-    registrationMutation.reset();
-
-    registrationMutation.mutate(
-      {
-        ...values,
-        username: values.username.trim(),
-        phone: values.phone.replace(/[^\d+]/g, ''),
-      },
-      {
-        onSuccess: () => push('/'),
-        onError: (error) => helpers.setStatus(getErrorMessage(error)),
-      },
-    );
-  };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
+      onSubmit={(values) =>
+        submit({
+          ...values,
+          username: values.username.trim(),
+          phone: values.phone.replace(/[^\d+]/g, ''),
+        })
+      }
       validationSchema={registrationSchema}
     >
       {({
         handleSubmit: submitForm,
-        status,
         isValid,
+        isSubmitting,
       }) => (
         <form className={css.form} onSubmit={submitForm} noValidate>
           <AuthField
@@ -124,23 +94,18 @@ export default function RegistrationForm() {
           />
 
           <div className={css.actions}>
-            {status && (
+            {error && (
               <p className={css.error} role="alert">
-                {status}
-              </p>
-            )}
-            {registrationMutation.isSuccess && (
-              <p className={css.success} role="status">
-                Вітаємо! Ваш обліковий запис Clothica створено.
+                {error}
               </p>
             )}
 
             <button
               className={css.submit}
-              disabled={!isValid || registrationMutation.isPending}
+              disabled={!isValid || isSubmitting || redirecting}
               type="submit"
             >
-              {registrationMutation.isPending
+              {isSubmitting || redirecting
                 ? 'Реєстрація...'
                 : 'Зареєструватися'}
             </button>

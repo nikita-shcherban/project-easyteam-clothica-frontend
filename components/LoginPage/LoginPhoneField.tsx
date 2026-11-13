@@ -1,10 +1,10 @@
 'use client';
 
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { useField } from 'formik';
 import { IMaskInput } from 'react-imask';
 import type { HTMLInputAutoCompleteAttribute } from 'react';
-import styles from './LoginForm/LoginForm.module.css';
+import styles from './LoginPhoneField.module.css';
 
 interface LoginPhoneFieldProps {
   id?: string;
@@ -21,7 +21,7 @@ interface LoginPhoneFieldProps {
 export default function LoginPhoneField({
   id: providedId,
   autoComplete = 'username',
-  placeholder = '+38 (0__) ___-__-__',
+  placeholder = '+38 (0__) __-__-__',
   fieldClassName = styles.field,
   inputClassName = styles.input,
   invalidInputClassName,
@@ -59,6 +59,7 @@ export default function LoginPhoneField({
           const nextValue = value.replace(/\D/g, '').length > 3 ? value : '';
           if (nextValue !== field.value) void helpers.setValue(nextValue);
         }}
+        onInput={(e) => togglePlaceholderColor((e.target as any).value)}
         onBlur={field.onBlur}
         onPaste={(event) => {
           const digits = event.clipboardData.getData('text').replace(/\D/g, '');
@@ -76,7 +77,7 @@ export default function LoginPhoneField({
         aria-describedby={
           validationAccessibility && error ? `${id}-error` : undefined
         }
-        className={className}
+        className={`${styles.input}`}
       />
       {error && (
         <p
