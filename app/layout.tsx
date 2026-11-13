@@ -1,4 +1,4 @@
-import 'modern-normalize/modern-normalize.min.css';
+import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from 'next';
 import { Nunito_Sans, Inter } from 'next/font/google';
 import './globals.css';
