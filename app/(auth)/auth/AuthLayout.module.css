@@ -33,7 +33,7 @@
   width: 100%;
   max-width: 1312px;
   flex: 1 0 auto;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
 }
 

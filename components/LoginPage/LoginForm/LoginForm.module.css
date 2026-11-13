@@ -29,6 +29,15 @@
   font: inherit;
 }
 
+.passwordInputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.input.passwordInput {
+  padding-right: 48px;
+}
+
 .input::placeholder {
   color: rgb(0 0 0 / 60%);
   opacity: 1;

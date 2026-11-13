@@ -11,7 +11,7 @@ export interface RegisterUserData {
 }
 
 export interface LoginUserData {
-  username: string;
+  phone: string;
   password: string;
 }
 export const register = async (data: RegisterUserData) => {
