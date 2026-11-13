@@ -56,20 +56,15 @@
 }
 
 .fieldError,
-.error,
-.success {
+.error {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
 }
 
 .fieldError,
 .error {
-  color: #a12622;
-}
-
-.success {
-  color: #385b27;
+  color: #9d0000;
 }
 
 .actions {
