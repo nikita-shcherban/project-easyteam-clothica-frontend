@@ -54,16 +54,10 @@ input.normalColor {
 .input:focus {
   border-color: var(--auth-accent);
 }
-.input:focus-visible {
-  outline: 2px solid var(--auth-accent);
-  outline-offset: 1px;
-}
+
 .input[aria-invalid='true'] {
   border-color: var(--auth-error);
   color: var(--auth-error);
-}
-.input[aria-invalid='true']:focus-visible {
-  outline-color: var(--auth-error);
 }
 
 .error {

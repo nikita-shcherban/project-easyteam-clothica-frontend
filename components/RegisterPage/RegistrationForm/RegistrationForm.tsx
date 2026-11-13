@@ -4,10 +4,7 @@ import { Formik } from 'formik';
 import AuthField from '@/components/Auth/AuthField';
 import PasswordVisibilityToggle from '@/components/Auth/PasswordVisibilityToggle';
 import LoginPhoneField from '@/components/LoginPage/LoginPhoneField';
-import {
-  register,
-  type RegisterUserData,
-} from '@/lib/api/client-api';
+import { register, type RegisterUserData } from '@/lib/api/client-api';
 import { getRegistrationErrorMessage } from '@/lib/auth/errors';
 import { useAuthSubmit } from '@/lib/hooks/useAuthSubmit';
 import { registrationSchema } from '@/lib/validation/auth';
@@ -39,11 +36,7 @@ export default function RegistrationForm() {
       }
       validationSchema={registrationSchema}
     >
-      {({
-        handleSubmit: submitForm,
-        isValid,
-        isSubmitting,
-      }) => (
+      {({ handleSubmit: submitForm, isValid, isSubmitting }) => (
         <form className={css.form} onSubmit={submitForm} noValidate>
           <AuthField
             name="username"
@@ -59,17 +52,7 @@ export default function RegistrationForm() {
             errorClassName={css.fieldError}
           />
 
-          <LoginPhoneField
-            id="phone"
-            autoComplete="tel"
-            placeholder="+38 (0__) __-__-__"
-            fieldClassName={css.field}
-            inputClassName=""
-            invalidInputClassName={css.invalidInput}
-            errorClassName={css.fieldError}
-            required={false}
-            validationAccessibility={false}
-          />
+          <LoginPhoneField />
 
           <AuthField
             name="password"

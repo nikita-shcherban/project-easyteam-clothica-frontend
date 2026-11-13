@@ -16,22 +16,23 @@
   font: inherit;
 }
 
-.input:focus {
-  border-color: var(--auth-accent, #8eaa76);
+.input.placeholderColor,
+.input.placeholderColor[aria-invalid='true'] {
+  color: rgb(0 0 0 / 60%);
+  opacity: 1;
 }
 
-.input:focus-visible {
-  outline: 2px solid var(--auth-accent, #8eaa76);
-  outline-offset: 1px;
+.input.normalColor {
+  color: var(--auth-text, #000);
+}
+
+.input:focus {
+  border-color: var(--auth-accent, #c5e1a5);
 }
 
 .input[aria-invalid='true'] {
   border-color: var(--auth-error, #9d0000);
   color: var(--auth-error, #9d0000);
-}
-
-.input[aria-invalid='true']:focus-visible {
-  outline-color: var(--auth-error, #9d0000);
 }
 
 .error {
