@@ -1,6 +1,6 @@
 export const SIZES = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'] as const;
 export type Size = (typeof SIZES)[number];
-export type Gender = 'male' | 'female' | 'unisex';
+export type Gender = 'man' | 'women' | 'unisex';
 
 export interface Good {
   _id: string;
@@ -11,9 +11,8 @@ export interface Good {
   size: string[];
   gender?: Gender;
   description?: string;
-  // TODO: уточнити назви полів у схемі Good (рейтинг і кількість відгуків)
-  rating?: number;
-  feedbacksCount?: number;
+  rating: number;
+  feedbacksCount: number;
   createdAt: string;
 }
 

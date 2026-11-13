@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   SIZES,
   type Category,
@@ -21,8 +21,8 @@ interface Props {
 
 const GENDERS: { value: '' | Gender; label: string }[] = [
   { value: '', label: 'Всі' },
-  { value: 'female', label: 'Жіночий' },
-  { value: 'male', label: 'Чоловічий' },
+  { value: 'women', label: 'Жіночий' },
+  { value: 'man', label: 'Чоловічий' },
   { value: 'unisex', label: 'Унісекс' },
 ];
 
@@ -57,6 +57,23 @@ export default function CategoriesFilter({
   onReset,
 }: Props) {
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
 
   const toggleSize = (size: Size) =>
     onChange({
@@ -66,7 +83,7 @@ export default function CategoriesFilter({
     });
 
   return (
-    <aside className={s.filters}>
+    <aside ref={ref} className={s.filters}>
       <div className={s.row}>
         <h2 className={s.title}>Фільтри</h2>
         <button type="button" className={s.link} onClick={onReset}>
