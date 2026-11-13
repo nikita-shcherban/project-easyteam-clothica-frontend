@@ -1,15 +1,20 @@
 'use client';
 import { useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { SIZES, type Gender, type GoodsFilters, type Size } from '@/types/goods';
+import {
+  SIZES,
+  type Gender,
+  type GoodsFilters,
+  type Size,
+} from '@/types/goods';
 
-export const PRICE_MAX = 5000; // TODO: підставити реальний максимум цін
+export const PRICE_MAX = 100000;
 
-const isSize = (v: string): v is Size => (SIZES as readonly string[]).includes(v);
+const isSize = (v: string): v is Size =>
+  (SIZES as readonly string[]).includes(v);
 const isGender = (v: string | null): v is Gender =>
-  v === 'male' || v === 'female' || v === 'unisex';
+  v === 'man' || v === 'women' || v === 'unisex';
 
-/** Єдине джерело правди для фільтрів — query-параметри URL */
 export function useGoodsFilters() {
   const router = useRouter();
   const pathname = usePathname();
@@ -18,13 +23,18 @@ export function useGoodsFilters() {
   const filters = useMemo<GoodsFilters>(() => {
     const num = (k: string) => {
       const v = params.get(k);
-      return v !== null && v !== '' && !Number.isNaN(Number(v)) ? Number(v) : undefined;
+      return v !== null && v !== '' && !Number.isNaN(Number(v))
+        ? Number(v)
+        : undefined;
     };
     const gender = params.get('gender');
     return {
       category: params.get('category') || undefined,
       gender: isGender(gender) ? gender : undefined,
-      sizes: params.getAll('size').filter(isSize).sort((a, b) => SIZES.indexOf(a) - SIZES.indexOf(b)),
+      sizes: params
+        .getAll('size')
+        .filter(isSize)
+        .sort((a, b) => SIZES.indexOf(a) - SIZES.indexOf(b)),
       minPrice: num('minPrice'),
       maxPrice: num('maxPrice'),
     };
@@ -45,7 +55,10 @@ export function useGoodsFilters() {
     [filters, router, pathname],
   );
 
-  const reset = useCallback(() => router.replace(pathname, { scroll: false }), [router, pathname]);
+  const reset = useCallback(
+    () => router.replace(pathname, { scroll: false }),
+    [router, pathname],
+  );
 
   return { filters, update, reset };
 }

@@ -29,23 +29,24 @@ export async function getGoods(
   page: number,
   limit: number,
 ) {
-  const { data } = await api.get<GoodsResponse>('/goods', {
-    params: {
-      page,
-      limit,
-      category: filters.category,
-      gender: filters.gender,
-      size: filters.sizes.length ? filters.sizes : undefined,
-      minPrice: filters.minPrice,
-      maxPrice: filters.maxPrice,
-    },
-  });
+  const params = new URLSearchParams();
+  params.set('page', String(page));
+  params.set('limit', String(limit));
+  if (filters.category) params.set('category', filters.category);
+  if (filters.gender) params.set('gender', filters.gender);
+  filters.sizes.forEach((s) => params.append('size', s)); // size=M&size=L
+  if (filters.minPrice !== undefined)
+    params.set('minPrice', String(filters.minPrice));
+  if (filters.maxPrice !== undefined)
+    params.set('maxPrice', String(filters.maxPrice));
+
+  const { data } = await api.get<GoodsResponse>(`/goods?${params.toString()}`);
   return data;
 }
 
 export async function getCategories(): Promise<Category[]> {
   const { data } = await api.get<{ categories: Category[] }>('/categories', {
-    params: { perPage: 50 },
+    params: { perPage: 20 },
   });
   return data.categories;
 }
