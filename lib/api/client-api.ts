@@ -50,3 +50,10 @@ export async function getCategories(): Promise<Category[]> {
   });
   return data.categories;
 }
+
+export async function subscribe(email: string) {
+  const { data } = await api.post<{ message: string }>('/subscriptions', {
+    email,
+  });
+  return data;
+}
