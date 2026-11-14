@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Nunito_Sans, Inter } from 'next/font/google';
+import 'modern-normalize';
 import './globals.css';
+import Footer from '@/components/Footer/Footer';
+import SiteFooter from '@/components/Footer/SiteFooter';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
 const nunitoSans = Nunito_Sans({
@@ -39,6 +42,9 @@ export default function RootLayout({
             {children}
             {modal}
           </main>
+          <SiteFooter>
+            <Footer />
+          </SiteFooter>
         </TanStackProvider>
       </body>
     </html>

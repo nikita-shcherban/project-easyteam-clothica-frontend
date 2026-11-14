@@ -3,6 +3,7 @@
 import { api } from '@/lib/api/api';
 import { User } from '@/types/user';
 import type { Category, GoodsFilters, GoodsResponse } from '@/types/goods';
+import type { ReviewsResponse } from '@/types/review';
 
 export interface RegisterUserData {
   username: string;
@@ -48,4 +49,18 @@ export async function getCategories(): Promise<Category[]> {
     params: { perPage: 50 },
   });
   return data.categories;
+}
+
+export async function subscribe(email: string) {
+  const { data } = await api.post<{ message: string }>('/subscriptions', {
+    email,
+  });
+  return data;
+}
+
+export async function getReviews(
+  params: { limit?: number; goodId?: string } = {},
+) {
+  const { data } = await api.get<ReviewsResponse>('/feedbacks', { params });
+  return data;
 }
