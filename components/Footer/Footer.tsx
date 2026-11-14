@@ -64,13 +64,9 @@ export default function Footer() {
                   aria-label={label}
                   className={styles.socialLink}
                 >
-                  <Image
-                    src={`/images/${icon}.svg`}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className={styles.socialIcon}
-                  />
+                  <svg className={styles.socialIcon} aria-hidden="true">
+                    <use href={`/icons/icons.svg#${icon}`} />
+                  </svg>
                 </a>
               </li>
             ))}
