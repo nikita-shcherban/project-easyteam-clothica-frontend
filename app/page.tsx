@@ -1,4 +1,5 @@
 import { Hero } from '@/components/HomePage/Hero/Hero';
+import Style from '@/components/HomePage/Style/Style';
 // import { Style } from '@/components/HomePage/Style/Style';
 // import { PopularCategories } from '@/components/HomePage/PopularCategories/PopularCategories';
 // import { PopularGoods } from '@/components/HomePage/PopularGoods/PopularGoods';
@@ -8,6 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Style />
       {/* <Style />
       <PopularCategories />
       <PopularGoods />
