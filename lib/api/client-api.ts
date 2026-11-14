@@ -2,7 +2,12 @@
 
 import { api } from '@/lib/api/api';
 import { User } from '@/types/user';
-import type { Category, GoodsFilters, GoodsResponse } from '@/types/goods';
+import type {
+  Category,
+  Good,
+  GoodsFilters,
+  GoodsResponse,
+} from '@/types/goods';
 
 export interface RegisterUserData {
   username: string;
@@ -56,4 +61,11 @@ export async function subscribe(email: string) {
     email,
   });
   return data;
+}
+
+export async function getGoodById(id: string): Promise<Good> {
+  const { data } = await api.get<{ success: boolean; data: Good }>(
+    `/goods/${id}`,
+  );
+  return data.data;
 }

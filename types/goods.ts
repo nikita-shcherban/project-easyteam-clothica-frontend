@@ -10,7 +10,9 @@ export interface Good {
   price: { value: number; currency: string };
   size: string[];
   gender?: Gender;
+  prevDescription?: string;
   description?: string;
+  characteristics?: string[];
   rating: number;
   feedbacksCount: number;
   createdAt: string;
