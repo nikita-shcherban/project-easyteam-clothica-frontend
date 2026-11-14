@@ -1,0 +1,167 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 64px;
+  background-color: #f3f9ed;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1312px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Section Title */
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 768px;
+  padding: 0;
+  gap: 16px;
+}
+
+.title {
+  width: 100%;
+  height: 116px;
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: #000;
+  flex: none;
+}
+
+/* Content */
+
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 32px;
+  list-style: none;
+}
+
+/* Column */
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 0;
+  gap: 12px;
+  background: none;
+  border-radius: 0;
+}
+
+/* Icon */
+
+.icon {
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex: none;
+}
+
+/* Column Title */
+
+.cardTitle {
+  width: 100%;
+  height: 31px;
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+  color: #000;
+  flex: none;
+}
+
+/* Description */
+
+.description {
+  width: 100%;
+  height: 48px;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+  flex: none;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .section {
+    padding: 48px 32px;
+  }
+
+  .list {
+    gap: 24px;
+  }
+
+  .cardTitle {
+    height: auto;
+    min-height: 31px;
+    font-size: 20px;
+  }
+
+  .description {
+    height: auto;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .section {
+    padding: 48px 20px;
+  }
+
+  .container {
+    gap: 32px;
+  }
+
+  .title {
+    height: auto;
+    font-size: 36px;
+  }
+
+  .list {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .cardTitle {
+    height: auto;
+    font-size: 24px;
+  }
+
+  .description {
+    height: auto;
+  }
+}

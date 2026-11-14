@@ -1,0 +1,117 @@
+.section {
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+  background-color: #F3F9ED;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1312px;
+  gap: 40px;
+}
+
+.title {
+  width: 100%;
+  max-width: 768px;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card:not(:first-child) {
+  display: none;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.name {
+  margin: 0;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 48px 32px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card:nth-child(2) {
+    display: flex;
+  }
+
+  .card:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+ .section {
+    padding: 80px 64px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .card:nth-child(3) {
+    display: flex;
+  }
+}
+
+/* кнопка всі катерогії */
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+
+.allCategoriesLink {
+  padding: 6px 12px;
+  min-height: 36px;
+  border-radius: 100px;
+  background-color: #0000000D;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  /* margin-right: auto; */
+}

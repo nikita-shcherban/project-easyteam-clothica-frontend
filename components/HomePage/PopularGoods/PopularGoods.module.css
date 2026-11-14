@@ -1,0 +1,439 @@
+.section {
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+  background-color: #f3f9ed;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1312px;
+  gap: 24px;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 16px;
+}
+
+.title {
+  width: 227px;
+  height: 86px;
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: #000;
+  flex: none;
+}
+
+.allGoodsLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  width: 108px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 100px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000;
+  white-space: nowrap;
+  flex: none;
+}
+
+/* Content */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 64px;
+}
+
+/* Slider wrapper */
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.sliderWrapper :global(.swiper) {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderWrapper :global(.swiper-wrapper) {
+  align-items: stretch;
+}
+
+.sliderWrapper :global(.swiper-slide) {
+  display: flex;
+  height: auto;
+}
+
+/* Product card */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 335 / 412.86;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 335 / 412.86;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+}
+
+/* Product information */
+
+.contentBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  flex: 1;
+  gap: 12px;
+}
+
+.productInfo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 72px;
+  gap: 8px;
+}
+
+.productHeader {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.productTitle {
+  width: 200px;
+  height: 54px;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  color: #000;
+  flex: none;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.price {
+  flex: none;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+  white-space: nowrap;
+}
+
+.detailsButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 28px;
+  margin-top: auto;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000;
+}
+
+/* Slider arrows */
+
+.sliderArrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  border: 1px solid #f9fcf6;
+  border-radius: 100px;
+  background: #c5e1a5;
+  color: #000;
+  cursor: pointer;
+  flex: none;
+}
+
+.sliderArrow svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: #000;
+  fill: none;
+  stroke: currentColor;
+  flex: none;
+}
+
+/* Arrows over the slider */
+
+.imageArrow {
+  display: none;
+  position: absolute;
+  top: 38%;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.imageArrowPrev {
+  left: -24px;
+}
+
+.imageArrowNext {
+  right: -24px;
+}
+
+/* Slider controls */
+
+.controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  gap: 40px;
+}
+
+.sliderDots {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 9px;
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.dotMedium {
+  width: 10px;
+  height: 10px;
+}
+
+.dotActive {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+}
+
+.dotPlaceholder {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.2;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 16px;
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .section {
+    padding: 48px 32px;
+  }
+
+  .header {
+    align-items: center;
+  }
+
+  .title {
+    width: auto;
+    height: auto;
+    font-size: 36px;
+    white-space: nowrap;
+  }
+
+  .card {
+    gap: 12px;
+  }
+
+  .productInfo {
+    min-height: 60px;
+    gap: 8px;
+  }
+
+  .productTitle {
+    width: 100%;
+    height: 42px;
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  .meta {
+    gap: 8px;
+  }
+
+  .price {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .detailsButton {
+    min-height: 28px;
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+
+  .contentBottom {
+    gap: 12px;
+  }
+
+  .image {
+    aspect-ratio: 336 / 414.1;
+  }
+
+  .imagePlaceholder {
+    aspect-ratio: 336 / 414.1;
+  }
+
+  /* One fixed pair of arrows */
+
+  .imageArrow {
+    display: flex;
+  }
+
+  .imageArrowPrev {
+    left: -24px;
+  }
+
+  .imageArrowNext {
+    right: -24px;
+  }
+
+  /* Dots */
+
+  .controls {
+    justify-content: center;
+    height: 32px;
+  }
+
+  .sliderDots {
+    flex: none;
+    justify-content: center;
+    width: 100%;
+    height: 32px;
+  }
+
+  .controls .arrows {
+    display: none;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1440px) {
+  .section {
+    padding: 80px 64px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .productInfo {
+    min-height: 72px;
+    gap: 8px;
+  }
+
+  .productTitle {
+    width: 200px;
+    height: 54px;
+    font-size: 18px;
+    line-height: 150%;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .image {
+    aspect-ratio: 304 / 374.66;
+  }
+
+  .imagePlaceholder {
+    aspect-ratio: 304 / 374.66;
+  }
+
+  .imageArrowPrev {
+    left: -35px;
+  }
+
+  .imageArrowNext {
+    right: -35px;
+  }
+}
