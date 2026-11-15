@@ -87,7 +87,7 @@ export const useBasketStore = create<BasketState>()(
     }),
     {
       name: 'basket',
-      storage: safeJSONStorage,
+      storage: safeJSONStorage, skipHydration: true,
       version: 1,
       // У localStorage — лише товари, без функцій
       partialize: (s) => ({ items: s.items }),

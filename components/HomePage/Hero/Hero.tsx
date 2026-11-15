@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './Hero.module.css';
 
-export function Hero() {
+function Hero() {
   return (
     <section className={styles.hero} aria-label="Головний банер">
       <div className={styles.container}>
@@ -13,8 +13,8 @@ export function Hero() {
             <p className={styles.description}>
               Clothica — це місце, де комфорт поєднується зі стилем. Ми
               створюємо базовий одяг, який легко комбінується та підходить для
-              будь-якої нагоди. Обирай речі, що підкреслять твою індивідуальність
-              і завжди будуть актуальними.
+              будь-якої нагоди. Обирай речі, що підкреслять твою
+              індивідуальність і завжди будуть актуальними.
             </p>
             <div className={styles.actions}>
               <Link href="#popular-goods" className={styles.primaryButton}>
