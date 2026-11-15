@@ -8,7 +8,7 @@ export default function GoodInfo({ good }: { good: Good }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={s.img}
-        src={good.image || '../../public/images/imgPlaceholder.webp'}
+        src={good.image || '/images/imgPlaceholder.webp'}
         alt={good.name}
         loading="lazy"
       />
