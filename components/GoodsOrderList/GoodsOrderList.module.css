@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.5;
+  color: #000;
 }
 
 /* Понад 4 товари — вертикальний скрол */
@@ -13,41 +16,47 @@
   overflow-y: auto;
 }
 
-.item {
+.card {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 24px;
 }
 
 .image {
   flex-shrink: 0;
   width: 82px;
   height: 101px;
-  border-radius: 8px;
+  border-radius: 16px;
   object-fit: cover;
   background-color: #e8efe2;
 }
 
-.info {
+.content {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+
+.header {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex-grow: 1;
+  width: 160px;
   min-width: 0;
 }
 
 .name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.5;
 }
 
 .meta {
   display: flex;
   gap: 12px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .metaItem {
@@ -57,66 +66,50 @@
 }
 
 .metaIcon {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
 }
 
-.metaIconOutline {
-  width: 14px;
-  height: 14px;
-  fill: none;
-}
-
-.size {
-  font-size: 14px;
-  color: rgb(0 0 0 / 0.6);
-}
-
-.side {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
 .price {
-  font-weight: 600;
+  font-size: 16px;
   white-space: nowrap;
 }
 
-.controls {
+.actions {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 8px;
 }
 
 .qty {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  padding: 6px 8px;
+  width: 64px;
+  padding: 8px;
   border: 1px solid rgb(0 0 0 / 0.15);
-  border-radius: 8px;
-  background-color: #fff;
-  text-align: center;
+  border-radius: 16px;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .remove {
   display: flex;
-  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
   border: 0;
-  border-radius: 50%;
-  background-color: transparent;
+  border-radius: 100px;
+  background-color: rgb(0 0 0 / 0.05);
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .remove:hover,
 .remove:focus-visible {
-  background-color: rgb(0 0 0 / 0.05);
+  background-color: rgb(0 0 0 / 0.1);
 }
 
 .removeIcon {
@@ -129,33 +122,54 @@
 .summary {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 16px;
+}
+
+.subtotal {
+  padding: 12px 0 4px;
+  border-top: 1px solid rgb(0 0 0 / 0.2);
+  font-size: 14px;
+}
+
+.delivery {
+  padding: 4px 0;
+  font-size: 14px;
 }
 
 .total {
-  padding-top: 8px;
-  border-top: 1px solid rgb(0 0 0 / 0.15);
-  font-weight: 700;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-/* Мобільний: ціна, кількість і видалення — під товаром */
+.value {
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* Мобільний: ціна під назвою, дії праворуч */
 @media screen and (max-width: 767px) {
-  .item {
-    flex-wrap: wrap;
+  .card {
+    gap: 16px;
   }
 
-  .info {
-    flex-basis: calc(100% - 82px - 16px);
+  .content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
-  .side {
-    flex-direction: row;
-    align-items: center;
+  .header {
     width: 100%;
+  }
+
+  .name {
+    font-size: 16px;
   }
 }
