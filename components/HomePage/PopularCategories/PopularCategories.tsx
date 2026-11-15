@@ -7,7 +7,7 @@ import { CategoryCard } from '@/components/CategoryCard';
 import Loader from '@/components/Loader/Loader';
 import styles from './PopularCategories.module.css';
 
-export function PopularCategories() {
+function PopularCategories() {
   const { data, isLoading } = useQuery({
     queryKey: ['categories', 'popular'],
     queryFn: () => getCategories({ page: 1, perPage: 3 }),
