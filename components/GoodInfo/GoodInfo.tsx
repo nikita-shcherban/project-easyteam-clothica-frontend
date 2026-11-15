@@ -6,7 +6,12 @@ export default function GoodInfo({ good }: { good: Good }) {
   return (
     <article className={s.card}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className={s.img} src={good.image} alt={good.name} loading="lazy" />
+      <img
+        className={s.img}
+        src={good.image || '../../public/images/imgPlaceholder.webp'}
+        alt={good.name}
+        loading="lazy"
+      />
       <div className={s.info}>
         <h3 className={s.name}>{good.name}</h3>
         <p className={s.price}>

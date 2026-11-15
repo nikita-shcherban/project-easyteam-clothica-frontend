@@ -7,7 +7,7 @@ interface AuthState {
   user: User | null;
   isAuthLoading: boolean;
   setAuthLoading: (loading: boolean) => void;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   clearUser: () => void;
 }
 
