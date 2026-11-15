@@ -6,7 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import SiteFooter from '@/components/Footer/SiteFooter';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import SaveErrorModal from '@/components/SaveErrorModal/SaveErrorModal';
-import Header from '@/components/Header';
+import Header from '@/components/Header/Header';
 
 const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
