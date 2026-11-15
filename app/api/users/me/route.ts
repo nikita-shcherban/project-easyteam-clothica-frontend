@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -8,18 +9,17 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const response = await fetch(
+    const response = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
       {
-        method: 'GET',
         headers: {
           Cookie: cookie,
         },
-        cache: 'no-store',
+        validateStatus: () => true,
       },
     );
 
-    const data = await response.json();
+    const data = response.data;
 
     return NextResponse.json(data, {
       status: response.status,
