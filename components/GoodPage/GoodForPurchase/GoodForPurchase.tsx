@@ -8,6 +8,8 @@ import ReviewFormModal from '../GoodReviews/ReviewFormModal/ReviewFormModal';
 import { useAuthStore } from '@/lib/store/auth-store';
 import Loader from '@/components/Loader/Loader';
 import Image from 'next/image';
+import { useBasketStore } from '@/lib/store/basket-store';
+import { useRouter } from 'next/navigation';
 
 interface GoodDetailsProps {
   goodId: string;
@@ -16,12 +18,15 @@ interface GoodDetailsProps {
 export default function GoodPage({ goodId }: GoodDetailsProps) {
   const { good, isLoading, isError } = useGood(goodId);
 
+  const router = useRouter();
+
   const user = useAuthStore((s) => s.user);
 
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const addGood = useBasketStore((state) => state.addGood);
 
   if (isLoading)
     return (
@@ -36,22 +41,12 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
   const currentSize = selectedSize || good.size?.[0] || '';
 
   const handleAddToCart = () => {
-    console.log('Додано в кошик:', {
-      goodId: good._id,
-      size: currentSize,
-      quantity,
-    });
-    setIsFormOpen(true);
-    // Тут виклик твоєї функції/стору кошика
+    addGood(good, currentSize, quantity);
   };
 
   const handleBuyNow = () => {
-    console.log('Купити зараз:', {
-      goodId: good._id,
-      size: currentSize,
-      quantity,
-    });
-    // Тут редірект на оформлення замовлення /order
+    addGood(good, currentSize, quantity);
+    router.push('/basket');
   };
 
   return (
