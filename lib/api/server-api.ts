@@ -11,7 +11,8 @@ export async function getUser(): Promise<User | null> {
 
   if (!accessToken?.value || !sessionId?.value) return null;
 
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_BASE_URL;
+  const backendUrl =
+    process.env.NEXT_PUBLIC_API_URL || process.env.API_BASE_URL;
   if (!backendUrl) throw new Error('Backend API URL is not configured');
 
   try {
