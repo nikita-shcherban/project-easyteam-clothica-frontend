@@ -1,4 +1,5 @@
-// TODO: заглушка, щоб проходив build
+import { CategoriesPage } from '@/components/CategoriesPage';
+
 export default function Page() {
-  return null;
+  return <CategoriesPage />;
 }
