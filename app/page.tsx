@@ -1,8 +1,9 @@
 import { Hero } from '@/components/HomePage/Hero/Hero';
+import Style from '@/components/HomePage/Style/Style';
 // import { Style } from '@/components/HomePage/Style/Style';
 import { PopularCategories } from '@/components/HomePage/PopularCategories/PopularCategories';
 // import { PopularGoods } from '@/components/HomePage/PopularGoods/PopularGoods';
-// import { LastReviews } from '@/components/HomePage/LastReviews/LastReviews';
+import LastReviews from '@/components/HomePage/LastReviews/LastReviews';
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       {/* <Style />
       <PopularCategories />
       <PopularGoods />
-      <LastReviews /> */}
+      */}
     </>
   );
 }
