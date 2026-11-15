@@ -1,4 +1,5 @@
-// TODO: заглушка, щоб проходив build
-export default function Page() {
-  return null;
+import CreateOrder from '@/components/CreateOrder/CreateOrder';
+
+export default function OrderPage() {
+  return <CreateOrder />;
 }

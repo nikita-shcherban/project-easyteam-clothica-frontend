@@ -13,3 +13,12 @@ export interface UserOrdersResponse {
   count: number;
   orders: Order[];
 }
+export interface CreateOrderPayload {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  city: string;
+  novaPoshtaBranch: string;
+  comment?: string;
+  items: { goodId: string; size: string; quantity: number }[];
+}

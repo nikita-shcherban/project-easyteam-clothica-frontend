@@ -9,7 +9,7 @@ import type {
   GoodsResponse,
 } from '@/types/goods';
 import type { ReviewsResponse } from '@/types/review';
-import type { UserOrdersResponse } from '@/types/order';
+import type { CreateOrderPayload, UserOrdersResponse } from '@/types/order';
 
 export interface RegisterUserData {
   username: string;
@@ -107,5 +107,10 @@ export const refreshSession = async (): Promise<void> => {
 
 export const getUserOrders = async (): Promise<UserOrdersResponse> => {
   const { data } = await api.get<UserOrdersResponse>('/orders');
+  return data;
+};
+
+export const createOrder = async (payload: CreateOrderPayload) => {
+  const { data } = await api.post('/orders', payload);
   return data;
 };
