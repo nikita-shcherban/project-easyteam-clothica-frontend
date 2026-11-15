@@ -9,6 +9,7 @@ import type {
   GoodsResponse,
 } from '@/types/goods';
 import type { ReviewsResponse } from '@/types/review';
+import type { UserOrdersResponse } from '@/types/order';
 
 export interface RegisterUserData {
   username: string;
@@ -28,6 +29,10 @@ export const register = async (data: RegisterUserData) => {
 export const login = async (data: LoginUserData) => {
   const response = await api.post<User>('/auth/login', data);
   return response.data;
+};
+
+export const logout = async (): Promise<void> => {
+  await api.post('/auth/logout');
 };
 
 export async function getGoods(
@@ -57,6 +62,26 @@ export async function getCategories(): Promise<Category[]> {
   return data.categories;
 }
 
+export const getCurrentUser = async (): Promise<User> => {
+  const { data } = await api.get<User>('/users/me');
+  return data;
+};
+
+export interface UpdateUserData {
+  name?: string;
+  surname?: string;
+  phone?: string;
+  city?: string;
+  novaPoshtaBranch?: string;
+}
+
+export const updateCurrentUser = async (
+  values: UpdateUserData,
+): Promise<User> => {
+  const { data } = await api.patch<{ data: User }>('/users/me', values);
+  return data.data;
+};
+
 export async function subscribe(email: string) {
   const { data } = await api.post<{ message: string }>('/subscriptions', {
     email,
@@ -75,3 +100,12 @@ export async function getGoodById(id: string): Promise<Good> {
   const { data } = await api.get<{ data: Good }>(`/goods/${id}`);
   return data.data;
 }
+
+export const refreshSession = async (): Promise<void> => {
+  await api.post('/auth/refresh');
+};
+
+export const getUserOrders = async (): Promise<UserOrdersResponse> => {
+  const { data } = await api.get<UserOrdersResponse>('/orders');
+  return data;
+};
