@@ -1,0 +1,161 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Понад 4 товари — вертикальний скрол */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(4 * 101px + 3 * 16px);
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  gap: 16px;
+}
+
+.image {
+  flex-shrink: 0;
+  width: 82px;
+  height: 101px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #e8efe2;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metaIcon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.metaIconOutline {
+  width: 14px;
+  height: 14px;
+  fill: none;
+}
+
+.size {
+  font-size: 14px;
+  color: rgb(0 0 0 / 0.6);
+}
+
+.side {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.price {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  padding: 6px 8px;
+  border: 1px solid rgb(0 0 0 / 0.15);
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.remove {
+  display: flex;
+  padding: 8px;
+  border: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.remove:hover,
+.remove:focus-visible {
+  background-color: rgb(0 0 0 / 0.05);
+}
+
+.removeIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  padding-top: 8px;
+  border-top: 1px solid rgb(0 0 0 / 0.15);
+  font-weight: 700;
+}
+
+/* Мобільний: ціна, кількість і видалення — під товаром */
+@media screen and (max-width: 767px) {
+  .item {
+    flex-wrap: wrap;
+  }
+
+  .info {
+    flex-basis: calc(100% - 82px - 16px);
+  }
+
+  .side {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+}
