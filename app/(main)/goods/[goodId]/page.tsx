@@ -1,6 +1,7 @@
 'use client';
 
 import GoodPage from '@/components/GoodPage/GoodForPurchase/GoodForPurchase';
+import GoodReviews from '@/components/GoodPage/GoodReviews/GoodReviews';
 import { useParams } from 'next/navigation';
 
 export default function GoodDetails() {
@@ -10,6 +11,7 @@ export default function GoodDetails() {
   return (
     <main>
       <GoodPage goodId={goodId} />
+      <GoodReviews goodId={goodId} />
     </main>
   );
 }

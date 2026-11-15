@@ -4,6 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useGood } from '@/lib/hooks/useGood';
 import styles from './GoodForPurchase.module.css';
+import ReviewFormModal from '../GoodReviews/ReviewFormModal/ReviewFormModal';
+import { useAuthStore } from '@/lib/store/auth-store';
+import Loader from '@/components/Loader/Loader';
+import Image from 'next/image';
 
 interface GoodDetailsProps {
   goodId: string;
@@ -12,15 +16,23 @@ interface GoodDetailsProps {
 export default function GoodPage({ goodId }: GoodDetailsProps) {
   const { good, isLoading, isError } = useGood(goodId);
 
+  const user = useAuthStore((s) => s.user);
+
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   if (isLoading)
-    return <div className={styles.stateMessage}>Завантаження товару...</div>;
+    return (
+      <div className={styles.stateMessage}>
+        Завантаження товару...
+        <Loader size="md" />
+      </div>
+    );
   if (isError || !good)
     return <div className={styles.stateMessage}>Товар не знайдено</div>;
 
-  // Встановлюємо перший доступний розмір за замовчуванням (наприклад, L або перший у масиві)
   const currentSize = selectedSize || good.size?.[0] || '';
 
   const handleAddToCart = () => {
@@ -29,6 +41,7 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
       size: currentSize,
       quantity,
     });
+    setIsFormOpen(true);
     // Тут виклик твоєї функції/стору кошика
   };
 
@@ -47,7 +60,12 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
         {/* Ліва колонка: Зображення */}
         <div className={styles.imageWrapper}>
           {good.image ? (
-            <img src={good.image} alt={good.name} className={styles.image} />
+            <Image
+              src={good.image}
+              alt={good.name || 'Товар'}
+              fill
+              className={styles.image}
+            />
           ) : (
             <div className={styles.imagePlaceholder}>Немає фото</div>
           )}
@@ -60,7 +78,26 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
             <Link href="/goods" className={styles.breadcrumbLink}>
               Всі товари
             </Link>
-            <span className={styles.separator}>&gt;</span>
+            <span className={styles.separator}>
+              <span className={styles.separator}>
+                <svg
+                  className={styles.separatorIcon}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 4L10 8L6 12"
+                    stroke="#888"
+                    strokeWidth="1.33333"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
             <span className={styles.breadcrumbCurrent}>{good.name}</span>
           </nav>
 
@@ -73,7 +110,17 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
               {good.price.value} {good.price.currency}
             </span>
 
-            <span className={styles.divider}>|</span>
+            <span className={styles.divider}>
+              <svg
+                width="1"
+                height="28"
+                viewBox="0 0 1 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0.5 0V28" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </span>
 
             <div className={styles.ratingBlock}>
               <span className={styles.stars}>
@@ -174,6 +221,13 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
           </div>
         </div>
       </div>
+      {isFormOpen && (
+        <ReviewFormModal
+          goodId={goodId}
+          defaultName={user?.username || 'Гість'}
+          onClose={() => setIsFormOpen(false)}
+        />
+      )}
     </main>
   );
 }

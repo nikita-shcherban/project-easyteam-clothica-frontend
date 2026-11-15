@@ -8,6 +8,7 @@ import type {
   GoodsFilters,
   GoodsResponse,
 } from '@/types/goods';
+import { ReviewsResponse } from '@/types/review';
 
 export interface RegisterUserData {
   username: string;
@@ -19,6 +20,14 @@ export interface LoginUserData {
   phone: string;
   password: string;
 }
+
+export interface CreateReviewData {
+  authorName: string;
+  text?: string;
+  rating: number;
+  good?: string;
+}
+
 export const register = async (data: RegisterUserData) => {
   const response = await api.post<User>('/auth/register', data);
   return response.data;
@@ -68,4 +77,22 @@ export async function getGoodById(id: string): Promise<Good> {
     `/goods/${id}`,
   );
   return data.data;
+}
+
+export async function createReview({
+  goodId,
+  payload,
+}: {
+  goodId: string;
+  payload: CreateReviewData;
+}) {
+  const { data } = await api.post(`/${goodId}/feedbacks`, payload);
+  return data;
+}
+
+export async function getReviews(
+  params: { limit?: number; goodId?: string } = {},
+) {
+  const { data } = await api.get<ReviewsResponse>('/feedbacks', { params });
+  return data;
 }
