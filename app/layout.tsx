@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import SiteFooter from '@/components/Footer/SiteFooter';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import SaveErrorModal from '@/components/SaveErrorModal/SaveErrorModal';
+import Header from '@/components/Header';
 
 const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang="en" className={`${nunitoSans.variable} ${inter.variable}`}>
       <body>
         <TanStackProvider>
+          <Header />
           <main>
             {children}
             {modal}

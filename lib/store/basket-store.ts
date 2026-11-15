@@ -45,6 +45,6 @@ export const useBasketStore = create<BasketState>()(
         })),
       clear: () => set({ items: [] }),
     }),
-    { name: 'basket', storage: safeJSONStorage },
+    { name: 'basket', storage: safeJSONStorage, skipHydration: true },
   ),
 );
