@@ -69,6 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     const user: unknown = await upstream.json();
+
     if (
       !user ||
       typeof user !== 'object' ||
