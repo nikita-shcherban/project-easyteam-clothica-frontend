@@ -9,6 +9,7 @@ import type { User } from '@/types/user';
 
 export function useAuthSubmit<Values>(
   authenticate: (values: Values) => Promise<User>,
+  getErrorMessage: (error: unknown) => string = getAuthErrorMessage,
 ) {
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
@@ -28,10 +29,13 @@ export function useAuthSubmit<Values>(
       router.replace('/');
       router.refresh();
     } catch (cause) {
-      const message = getAuthErrorMessage(cause);
+      const message = getErrorMessage(cause);
       setError(message);
-      // The inline alert remains available if loading the toast fails.
-      void notifyAuthError(message).catch(() => undefined);
+      void notifyAuthError(message).catch((notificationError: unknown) => {
+        console.error('Failed to display authentication error notification', {
+          notificationError,
+        });
+      });
       pending.current = false;
     }
   }

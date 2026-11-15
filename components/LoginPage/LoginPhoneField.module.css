@@ -1,0 +1,41 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 8px;
+  border: 1px solid var(--auth-border, rgb(0 0 0 / 15%));
+  border-radius: var(--auth-radius, 16px);
+  outline: none;
+  color: var(--auth-text, #000);
+  background: transparent;
+  font: inherit;
+}
+
+.input.placeholderColor,
+.input.placeholderColor[aria-invalid='true'] {
+  color: rgb(0 0 0 / 60%);
+  opacity: 1;
+}
+
+.input.normalColor {
+  color: var(--auth-text, #000);
+}
+
+.input:focus {
+  border-color: var(--auth-accent, #c5e1a5);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--auth-error, #9d0000);
+  color: var(--auth-error, #9d0000);
+}
+
+.error {
+  color: var(--auth-error, #9d0000);
+  font-size: 12px;
+}

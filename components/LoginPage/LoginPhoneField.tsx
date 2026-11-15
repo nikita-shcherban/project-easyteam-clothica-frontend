@@ -1,13 +1,15 @@
 'use client';
 
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { useField } from 'formik';
 import { IMaskInput } from 'react-imask';
-import styles from './LoginForm.module.css';
+import styles from './LoginPhoneField.module.css';
 
 export default function LoginPhoneField() {
-  const id = useId();
+  const generatedId = useId();
+  const id = generatedId;
   const [field, meta, helpers] = useField<string>('phone');
+  const [hasPhoneDigits, setHasPhoneDigits] = useState(false);
   const error = meta.touched ? meta.error : undefined;
 
   return (
@@ -26,6 +28,9 @@ export default function LoginPhoneField() {
         overwrite
         value={field.value}
         onAccept={(value) => {
+          const digits = value.replace(/\D/g, '').replace(/^380/, '');
+          setHasPhoneDigits(digits.length > 0);
+
           const nextValue = value.replace(/\D/g, '').length > 3 ? value : '';
           if (nextValue !== field.value) void helpers.setValue(nextValue);
         }}
@@ -40,11 +45,16 @@ export default function LoginPhoneField() {
             );
           }
         }}
-        placeholder="+38 (0__) ___-__-__"
+        placeholder="+38 (0__) __-__-__"
         required
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={styles.input}
+        className={[
+          styles.input,
+          hasPhoneDigits ? styles.normalColor : styles.placeholderColor,
+        ]
+          .filter(Boolean)
+          .join(' ')}
       />
       {error && (
         <p id={`${id}-error`} className={styles.error}>

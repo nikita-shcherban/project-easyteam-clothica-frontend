@@ -300,6 +300,25 @@
   gap: 16px;
 }
 
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid #7da64b;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.cardLink:hover .detailsButton {
+  background-color: #c5e1a5;
+}
+
 /* Tablet */
 
 @media (min-width: 768px) {

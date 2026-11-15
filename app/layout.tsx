@@ -2,7 +2,10 @@ import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from 'next';
 import { Nunito_Sans, Inter } from 'next/font/google';
 import './globals.css';
+import Footer from '@/components/Footer/Footer';
+import SiteFooter from '@/components/Footer/SiteFooter';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import SaveErrorModal from '@/components/SaveErrorModal/SaveErrorModal';
 
 const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
@@ -40,6 +43,10 @@ export default function RootLayout({
             {children}
             {modal}
           </main>
+          <SiteFooter>
+            <Footer />
+          </SiteFooter>
+          <SaveErrorModal />
         </TanStackProvider>
       </body>
     </html>
