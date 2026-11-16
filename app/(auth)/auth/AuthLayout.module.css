@@ -23,14 +23,13 @@
   width: 100%;
   max-width: 1312px;
   flex: 1 0 auto;
-  /*align-items: center;*/
+  align-items: center;
   justify-content: center;
 }
 
 .content > * {
   width: 100%;
-  max-width: 335px;
-  min-width: 320px;
+  max-width: 375px;
 }
 
 .footer {

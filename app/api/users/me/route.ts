@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/users/me`,
+      `${process.env.API_BASE_URL}/api/users/me`,
       {
         headers: {
           Cookie: cookie,

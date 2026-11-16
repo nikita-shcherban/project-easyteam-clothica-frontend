@@ -1,4 +1,5 @@
-// TODO: заглушка, щоб проходив build
+import ProfilePage from '@/components/ProfilePage/ProfilePage';
+
 export default function Page() {
-  return null;
+  return <ProfilePage />;
 }

@@ -1,62 +1,256 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { getGoodById } from '@/lib/api/client-api';
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-interface GoodForPurchaseProps {
+import { useGood } from '@/lib/hooks/useGood';
+import { useAuthStore } from '@/lib/store/auth-store';
+import { useBasketStore } from '@/lib/store/basket-store';
+
+import Loader from '@/components/Loader/Loader';
+import ReviewFormModal from '../GoodReviews/ReviewFormModal/ReviewFormModal';
+
+import styles from './GoodForPurchase.module.css';
+
+interface GoodDetailsProps {
   goodId: string;
 }
 
-export default function GoodForPurchase({
-  goodId,
-}: GoodForPurchaseProps) {
-  const {
-    data: good,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ['good', goodId],
-    queryFn: () => getGoodById(goodId),
-    enabled: Boolean(goodId),
-  });
+export default function GoodForPurchase({ goodId }: GoodDetailsProps) {
+  const { good, isLoading, isError } = useGood(goodId);
+
+  const router = useRouter();
+
+  const user = useAuthStore((state) => state.user);
+  const isAuthenticated = Boolean(user);
+
+  const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const addGood = useBasketStore((state) => state.addGood);
 
   if (isLoading) {
-    return <p>Завантаження товару...</p>;
+    return (
+      <div className={styles.stateMessage}>
+        Завантаження товару...
+        <Loader size="md" />
+      </div>
+    );
   }
 
   if (isError || !good) {
-    return <p>Не вдалося завантажити товар.</p>;
+    return (
+      <div className={styles.stateMessage}>
+        Товар не знайдено
+      </div>
+    );
   }
 
+  const currentSize = selectedSize || good.size?.[0] || '';
+
+  const handleAddToCart = () => {
+    addGood(good, currentSize, quantity);
+  };
+
+  const handleBuyNow = () => {
+    addGood(good, currentSize, quantity);
+    router.push('/basket');
+  };
+
   return (
-    <section>
-      <div>
-        {good.image && (
-          <img
-            src={good.image}
-            alt={good.name}
-            width={400}
-          />
-        )}
+    <main className={styles.container}>
+      <div className={styles.grid}>
+        <div className={styles.imageWrapper}>
+          {good.image ? (
+            <Image
+              src={good.image}
+              alt={good.name || 'Товар'}
+              fill
+              className={styles.image}
+            />
+          ) : (
+            <div className={styles.imagePlaceholder}>
+              Немає фото
+            </div>
+          )}
+        </div>
+
+        <div className={styles.info}>
+          <nav className={styles.breadcrumbs}>
+            <Link href="/goods" className={styles.breadcrumbLink}>
+              Всі товари
+            </Link>
+
+            <span className={styles.separator}>
+              <svg
+                className={styles.separatorIcon}
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 4L10 8L6 12"
+                  stroke="#888"
+                  strokeWidth="1.33333"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+
+            <span className={styles.breadcrumbCurrent}>
+              {good.name}
+            </span>
+          </nav>
+
+          <h1 className={styles.title}>{good.name}</h1>
+
+          <div className={styles.priceRatingRow}>
+            <span className={styles.price}>
+              {good.price.value} {good.price.currency}
+            </span>
+
+            <span className={styles.divider}>
+              <svg
+                width="1"
+                height="28"
+                viewBox="0 0 1 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.5 0V28"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+              </svg>
+            </span>
+
+            <div className={styles.ratingBlock}>
+              <span className={styles.stars}>
+                {'★'.repeat(Math.round(good.rating || 0))}
+                {'☆'.repeat(5 - Math.round(good.rating || 0))}
+              </span>
+
+              <span className={styles.ratingText}>
+                ({good.rating.toFixed(1)}) • {good.feedbacksCount} відгуків
+              </span>
+            </div>
+          </div>
+
+          {good.prevDescription && (
+            <p className={styles.prevDescription}>
+              {good.prevDescription}
+            </p>
+          )}
+
+          {good.size && good.size.length > 0 && (
+            <div className={styles.sizeGroup}>
+              <label htmlFor="size-select" className={styles.label}>
+                Розмір
+              </label>
+
+              <select
+                id="size-select"
+                value={currentSize}
+                onChange={(event) => setSelectedSize(event.target.value)}
+                className={styles.select}
+              >
+                {good.size.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className={styles.actions}>
+            <div className={styles.cartRow}>
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                className={styles.addToCartBtn}
+              >
+                Додати в кошик
+              </button>
+
+              <input
+                type="number"
+                min={1}
+                value={quantity}
+                onChange={(event) =>
+                  setQuantity(Math.max(1, Number(event.target.value)))
+                }
+                className={styles.quantityInput}
+                aria-label="Кількість"
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              className={styles.buyNowBtn}
+            >
+              Купити зараз
+            </button>
+
+            <p className={styles.deliveryNote}>
+              Безкоштовна доставка для замовлень від 1000 грн
+            </p>
+          </div>
+
+          <div className={styles.detailsSection}>
+            <div className={styles.tabHeader}>
+              <span className={styles.activeTab}>Опис</span>
+            </div>
+
+            {good.description && (
+              <div className={styles.description}>
+                {good.description.split('\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            {good.characteristics &&
+              good.characteristics.length > 0 && (
+                <div className={styles.characteristics}>
+                  <h3 className={styles.charTitle}>
+                    Основні характеристики
+                  </h3>
+
+                  <ul className={styles.charList}>
+                    {good.characteristics.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsFormOpen(true)}
+          >
+            Залишити відгук
+          </button>
+        </div>
       </div>
 
-      <div>
-        <h1>{good.name}</h1>
-
-        <p>
-          {good.price.value} {good.price.currency}
-        </p>
-
-        <p>Категорія: {good.category.name}</p>
-
-        <p>Рейтинг: {good.rating}</p>
-
-        <p>Відгуків: {good.feedbacksCount}</p>
-
-        <p>Розміри: {good.size.join(', ')}</p>
-
-        {good.description && <p>{good.description}</p>}
-      </div>
-    </section>
+      {isFormOpen && (
+        <ReviewFormModal
+          goodId={goodId}
+          isAuthenticated={isAuthenticated}
+          defaultName={user?.username || ''}
+          onClose={() => setIsFormOpen(false)}
+        />
+      )}
+    </main>
   );
 }

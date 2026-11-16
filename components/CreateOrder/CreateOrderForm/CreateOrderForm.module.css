@@ -1,0 +1,91 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* mobile: одна колонка */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 12px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 14px;
+  border: 1px solid #cfe3bd;
+  border-radius: 20px;
+  background: transparent;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #8fbf6a;
+}
+
+.textarea {
+  height: 120px;
+  padding: 12px;
+  border-radius: 16px;
+  resize: none;
+}
+
+.inputError {
+  border-color: #d93025;
+}
+
+.error {
+  font-size: 12px;
+  color: #d93025;
+}
+
+.submit {
+  align-self: center;
+  min-width: 190px;
+  min-height: 40px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #c5e1a5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* tablet і вище: ім'я/прізвище та місто/відділення у два стовпці */
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+}

@@ -9,7 +9,7 @@ import type {
   GoodsResponse,
 } from '@/types/goods';
 import type { ReviewsResponse } from '@/types/review';
-import type { UserOrdersResponse } from '@/types/order';
+import type { CreateOrderPayload, UserOrdersResponse } from '@/types/order';
 
 export interface RegisterUserData {
   username: string;
@@ -21,6 +21,14 @@ export interface LoginUserData {
   phone: string;
   password: string;
 }
+
+export interface CreateReviewData {
+  authorName: string;
+  text?: string;
+  rating: number;
+  good?: string;
+}
+
 export const register = async (data: RegisterUserData) => {
   const response = await api.post<User>('/auth/register', data);
   return response.data;
@@ -89,6 +97,17 @@ export async function subscribe(email: string) {
   return data;
 }
 
+export async function createReview({
+  goodId,
+  payload,
+}: {
+  goodId: string;
+  payload: CreateReviewData;
+}) {
+  const { data } = await api.post(`/${goodId}/feedbacks`, payload);
+  return data;
+}
+
 export async function getReviews(
   params: { limit?: number; goodId?: string } = {},
 ) {
@@ -107,5 +126,10 @@ export const refreshSession = async (): Promise<void> => {
 
 export const getUserOrders = async (): Promise<UserOrdersResponse> => {
   const { data } = await api.get<UserOrdersResponse>('/orders');
+  return data;
+};
+
+export const createOrder = async (payload: CreateOrderPayload) => {
+  const { data } = await api.post('/orders', payload);
   return data;
 };

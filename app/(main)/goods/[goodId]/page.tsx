@@ -1,4 +1,5 @@
 import GoodForPurchase from '@/components/GoodPage/GoodForPurchase/GoodForPurchase';
+import GoodReviews from '@/components/GoodPage/GoodReviews/GoodReviews';
 
 interface PageProps {
   params: Promise<{
@@ -9,5 +10,10 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { goodId } = await params;
 
-  return <GoodForPurchase goodId={goodId} />;
+  return (
+    <main>
+      <GoodForPurchase goodId={goodId} />
+      <GoodReviews goodId={goodId} />
+    </main>
+  );
 }
