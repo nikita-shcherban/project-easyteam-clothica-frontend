@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
+import { Keyboard } from 'swiper/modules';
 
 import 'swiper/css';
 
@@ -11,6 +12,9 @@ import { useGoods } from '@/lib/hooks/useGoods';
 import type { Good } from '@/types/goods';
 
 import styles from './PopularGoods.module.css';
+
+const PAGE_SIZE = 4;
+const MAX_GOODS = 12;
 
 function ArrowIcon({ direction }: { direction: 'prev' | 'next' }) {
   return (
@@ -84,9 +88,7 @@ function ProductCard({ good }: { good: Good }) {
             </p>
           </div>
 
-          <span className={styles.detailsButton}>
-            Детальніше
-          </span>
+          <span className={styles.detailsButton}>Детальніше</span>
         </div>
       </Link>
     </article>
@@ -101,24 +103,78 @@ export default function PopularGoods() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGoods({
-    sizes: [],
-  });
-
-  // Автоматично завантажуємо всі сторінки товарів
-  useEffect(() => {
-    if (hasNextPage && !isFetchingNextPage && !error) {
-      void fetchNextPage();
-    }
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage, error]);
-
-  // Сортуємо всі завантажені товари за рейтингом
-  const popularGoods = [...goods].sort(
-    (a, b) => (b.rating ?? 0) - (a.rating ?? 0),
+  } = useGoods(
+    {
+      sizes: [],
+    },
+    {
+      pageSize: PAGE_SIZE,
+    },
   );
 
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  // Захист від повторних запитів
+  const isLoadingMoreRef = useRef(false);
+
+  // Сортуємо завантажені товари за рейтингом і обмежуємо їх кількість до 12
+  const popularGoods = [...goods]
+    .slice(0, MAX_GOODS)
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+
+  // Оновлюємо стан слайдера
+  const updateSwiperState = (instance: SwiperType) => {
+    if (instance.destroyed) return;
+
+    setActiveIndex(instance.activeIndex);
+    setIsBeginning(instance.isBeginning);
+    setIsEnd(instance.isEnd);
+  };
+
+  // Підвантажуємо наступні товари при наближенні до кінця
+  useEffect(() => {
+    if (
+      !swiper ||
+      swiper.destroyed ||
+      !hasNextPage ||
+      goods.length >= MAX_GOODS ||
+      isFetchingNextPage ||
+      isLoadingMoreRef.current
+    ) {
+      return;
+    }
+
+    const visibleSlides = swiper.slidesPerViewDynamic();
+    const lastVisibleIndex = swiper.activeIndex + visibleSlides;
+
+    // Завантажуємо наступні 4 товари,
+    // коли залишається одна або менше карток
+    if (goods.length - lastVisibleIndex <= 1) {
+      isLoadingMoreRef.current = true;
+
+      void fetchNextPage().finally(() => {
+        isLoadingMoreRef.current = false;
+      });
+    }
+  }, [
+    swiper,
+    activeIndex,
+    goods.length,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  ]);
+
+  // Оновлюємо Swiper після отримання нових товарів
+  useEffect(() => {
+    if (!swiper || swiper.destroyed) return;
+
+    swiper.update();
+    updateSwiperState(swiper);
+  }, [swiper, popularGoods.length]);
 
   const getMaxIndex = () => {
     if (!swiper || swiper.destroyed) return 0;
@@ -143,10 +199,18 @@ export default function PopularGoods() {
   const maxIndex = getMaxIndex();
 
   const activeDot =
-    maxIndex > 0 ? Math.round((activeIndex / maxIndex) * 4) : 0;
+    maxIndex > 0
+      ? Math.round((activeIndex / maxIndex) * 4)
+      : 0;
 
-  const isLoadingAllGoods =
-    loading || isFetchingNextPage || (!!hasNextPage && !error);
+  const isInitialLoading = loading && goods.length === 0;
+
+  const isPrevDisabled = isBeginning;
+
+  const isNextDisabled =
+    isEnd &&
+    (!hasNextPage || goods.length >= MAX_GOODS) &&
+    !isFetchingNextPage;
 
   return (
     <section id="popular-goods" className={styles.section}>
@@ -159,29 +223,35 @@ export default function PopularGoods() {
           </Link>
         </div>
 
-        {isLoadingAllGoods && <p>Завантаження товарів...</p>}
+        {isInitialLoading && <p>Завантаження товарів...</p>}
 
         {error && <p>Не вдалося завантажити товари.</p>}
 
-        {!isLoadingAllGoods &&
+        {!isInitialLoading &&
           !error &&
           popularGoods.length === 0 && (
             <p>Товари поки що відсутні.</p>
           )}
 
-        {!isLoadingAllGoods &&
+        {!isInitialLoading &&
           !error &&
           popularGoods.length > 0 && (
             <div className={styles.content}>
               <div className={styles.sliderWrapper}>
                 <Swiper
-                  onSwiper={setSwiper}
-                  onSlideChange={(instance) => {
-                    setActiveIndex(instance.activeIndex);
+                  modules={[Keyboard]}
+                  keyboard={{
+                    enabled: true,
+                    onlyInViewport: true,
                   }}
-                  onBreakpoint={(instance) => {
-                    setActiveIndex(instance.activeIndex);
+                  onSwiper={(instance) => {
+                    setSwiper(instance);
+                    updateSwiperState(instance);
                   }}
+                  onSlideChange={updateSwiperState}
+                  onBreakpoint={updateSwiperState}
+                  onResize={updateSwiperState}
+                  onUpdate={updateSwiperState}
                   slidesPerView={1}
                   spaceBetween={32}
                   breakpoints={{
@@ -206,6 +276,7 @@ export default function PopularGoods() {
                   className={`${styles.sliderArrow} ${styles.imageArrow} ${styles.imageArrowPrev}`}
                   aria-label="Попередні товари"
                   onClick={goPrev}
+                  disabled={isPrevDisabled}
                 >
                   <ArrowIcon direction="prev" />
                 </button>
@@ -215,6 +286,7 @@ export default function PopularGoods() {
                   className={`${styles.sliderArrow} ${styles.imageArrow} ${styles.imageArrowNext}`}
                   aria-label="Наступні товари"
                   onClick={goNext}
+                  disabled={isNextDisabled}
                 >
                   <ArrowIcon direction="next" />
                 </button>
@@ -259,6 +331,7 @@ export default function PopularGoods() {
                     className={styles.sliderArrow}
                     aria-label="Попередні товари"
                     onClick={goPrev}
+                    disabled={isPrevDisabled}
                   >
                     <ArrowIcon direction="prev" />
                   </button>
@@ -268,11 +341,18 @@ export default function PopularGoods() {
                     className={styles.sliderArrow}
                     aria-label="Наступні товари"
                     onClick={goNext}
+                    disabled={isNextDisabled}
                   >
                     <ArrowIcon direction="next" />
                   </button>
                 </div>
               </div>
+
+              {isFetchingNextPage && (
+                <p aria-live="polite">
+                  Завантаження наступних товарів...
+                </p>
+              )}
             </div>
           )}
       </div>
