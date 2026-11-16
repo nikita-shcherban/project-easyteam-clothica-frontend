@@ -1,0 +1,112 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+}
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 710px;
+  padding: 48px 24px 32px;
+  border-radius: 16px;
+  background: #fafbf7;
+}
+.close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+}
+.title {
+  margin: 0 0 32px;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.label {
+  font-size: 16px;
+}
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d3d8cb;
+  border-radius: 24px;
+  background: transparent;
+  font: inherit;
+}
+.input:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.input:focus-visible {
+  outline: 2px solid #9ccc65;
+  outline-offset: 1px;
+}
+.textarea {
+  min-height: 160px;
+  border-radius: 20px;
+  resize: vertical;
+}
+.invalid {
+  border-color: #c62828;
+}
+.error {
+  color: #c62828;
+  font-size: 13px;
+}
+.counter {
+  align-self: flex-end;
+  color: #7a8070;
+  font-size: 12px;
+}
+.submit {
+  align-self: center;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 24px;
+  background: #c5e1a5;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.submit:hover:not(:disabled) {
+  background: #b0d487;
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    padding: 56px 58px 40px;
+  }
+  .title {
+    font-size: 44px;
+  }
+}

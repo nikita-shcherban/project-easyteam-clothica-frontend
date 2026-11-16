@@ -1,0 +1,87 @@
+.wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.slide {
+  height: auto;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+.text {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.author {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.good {
+  font-size: 14px;
+  color: inherit;
+  text-decoration: underline;
+}
+.good:hover {
+  text-decoration: none;
+}
+.controls {
+  display: flex;
+  justify-content: center; /* mobile */
+  gap: 10px;
+  margin-top: 24px;
+}
+@media (min-width: 768px) {
+  .controls {
+    justify-content: flex-end; /* tablet + desktop */
+    margin-top: 32px;
+  }
+}
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #c5e1a5;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.arrow:hover:not(:disabled) {
+  background: #b0d487;
+}
+.arrow:disabled {
+  background: #e3ecd6;
+  color: #9aa38d;
+  cursor: not-allowed;
+}
+.arrow:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+}
