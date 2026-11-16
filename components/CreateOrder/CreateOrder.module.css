@@ -1,0 +1,73 @@
+.section {
+  padding: 40px 0 64px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: 1440px;
+}
+
+.title {
+  margin-bottom: 32px;
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.subtitle {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+}
+
+.empty a {
+  text-decoration: underline;
+}
+
+/* mobile і tablet: товари, під ними форма */
+.columns {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+}
+
+/* desktop: дві колонки, як у макеті */
+@media (min-width: 1440px) {
+  .container {
+    padding: 0 64px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .columns {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .columns > * {
+    flex: 1;
+  }
+}
