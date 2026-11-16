@@ -1,0 +1,193 @@
+.container {
+  width: calc(100% - 40px);
+
+  max-width: 335px;
+  margin-inline: auto;
+  /* margin: auto; */
+  margin-top: 64px;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-nunito-sans), sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.userInfoWrapper {
+  margin-bottom: 32px;
+}
+
+.transactions {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  margin-bottom: 16px;
+  font-family: var(--font-nunito-sans), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.logoutButton {
+  /* box-sizing: border-box; */
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+}
+.logoutButton:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.logoutButton:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.5);
+  outline-offset: 3px;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-height: 304px;
+  overflow-y: auto;
+}
+
+.orderItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  align-items: start;
+  column-gap: 16px;
+  width: 100%;
+  font-family: var(--font-inter), sans-serif;
+
+  grid-template-rows: 48px;
+}
+.orderDate {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.orderNumber,
+.orderPriceLabel {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.orderNumber {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.orderPrice {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.orderItem > div:last-child {
+  text-align: right;
+  justify-self: end;
+}
+
+.orderItem p {
+  margin: 0;
+}
+.orderStatus {
+  display: none;
+}
+
+.orderStatusLabel {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.orderStatusValue {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 704px;
+  }
+  .logoutButton {
+    width: 156px;
+    align-self: center;
+  }
+  .orderItem {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .orderStatus {
+    display: block;
+  }
+  .orderItem > div:last-child {
+    text-align: left;
+    justify-self: stretch;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .title {
+    font-size: 48px;
+  }
+  .sectionTitle {
+    font-size: 24px;
+  }
+  .container {
+    max-width: 1312px;
+    margin-top: 112px;
+    margin-bottom: 80px;
+  }
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+    row-gap: 48px;
+  }
+  .transactions {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+  .userInfoWrapper {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+  .logoutButton {
+    grid-column: 1/ -1;
+    justify-self: center;
+  }
+}
