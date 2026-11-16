@@ -2,10 +2,13 @@ import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from 'next';
 import { Nunito_Sans, Inter } from 'next/font/google';
 import './globals.css';
+import 'izitoast/dist/css/iziToast.min.css';
 import Footer from '@/components/Footer/Footer';
 import SiteFooter from '@/components/Footer/SiteFooter';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import SaveErrorModal from '@/components/SaveErrorModal/SaveErrorModal';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
+import Header from '@/components/Header/Header';
 
 const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
@@ -39,14 +42,17 @@ export default function RootLayout({
     <html lang="en" className={`${nunitoSans.variable} ${inter.variable}`}>
       <body>
         <TanStackProvider>
-          <main>
-            {children}
-            {modal}
-          </main>
-          <SiteFooter>
-            <Footer />
-          </SiteFooter>
-          <SaveErrorModal />
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+              {modal}
+            </main>
+            <SiteFooter>
+              <Footer />
+            </SiteFooter>
+            <SaveErrorModal />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

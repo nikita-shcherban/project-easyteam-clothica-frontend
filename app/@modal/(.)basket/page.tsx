@@ -1,4 +1,6 @@
-// TODO: заглушка, щоб проходив build
-export default function Page() {
-  return null;
+import BasketModal from '@/components/BasketModal/BasketModal';
+
+// Перехоплений маршрут /basket: перехід зі сторінки сайту відкриває кошик модалкою
+export default function BasketModalPage() {
+  return <BasketModal />;
 }
