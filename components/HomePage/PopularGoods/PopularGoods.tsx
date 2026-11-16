@@ -149,7 +149,7 @@ export default function PopularGoods() {
     loading || isFetchingNextPage || (!!hasNextPage && !error);
 
   return (
-    <section className={styles.section}>
+    <section id="popular-goods" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>Популярні товари</h2>

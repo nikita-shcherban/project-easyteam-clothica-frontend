@@ -17,9 +17,14 @@ export function useCategories() {
   });
 }
 
-export function useGoods(filters: GoodsFilters) {
-  const isDesktop = useMediaQuery('(min-width: 1280px)');
-  const limit = isDesktop === null ? null : isDesktop ? 12 : 8;
+export function useGoods(
+  filters: GoodsFilters,
+  options?: { pageSize?: number },
+) {
+  const isDesktop = useMediaQuery('(min-width: 1440px)');
+
+  const responsiveLimit = isDesktop === null ? null : isDesktop ? 12 : 8;
+  const limit = options?.pageSize ?? responsiveLimit;
 
   const query = useInfiniteQuery({
     queryKey: ['goods', filters, limit],

@@ -214,6 +214,20 @@
   flex: none;
 }
 
+.sliderArrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sliderArrow:not(:disabled):hover {
+  background: #a8cf7e;
+}
+
+.sliderArrow:focus-visible {
+  outline: 2px solid #7da64b;
+  outline-offset: 3px;
+}
+
 .sliderArrow svg {
   display: block;
   width: 24px;
