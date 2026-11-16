@@ -15,6 +15,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 interface Props {
   goodId?: string;
   defaultName: string;
+  isAuthenticated: boolean;
   onClose: () => void;
 }
 
@@ -25,7 +26,10 @@ interface Values {
 }
 
 const schema = Yup.object({
-  authorName: Yup.string().trim().max(50, 'Максимум 50 символів'),
+  authorName: Yup.string()
+    .trim()
+    .required('Введіть ваше ім’я')
+    .max(50, 'Максимум 50 символів'),
   text: Yup.string().min(0).max(300, 'Максимум 300 символів'),
   rating: Yup.number()
     .min(1, 'Поставте оцінку')
@@ -36,6 +40,7 @@ const schema = Yup.object({
 export default function ReviewFormModal({
   goodId,
   defaultName,
+  isAuthenticated,
   onClose,
 }: Props) {
   const qc = useQueryClient();
@@ -93,21 +98,21 @@ export default function ReviewFormModal({
         </h2>
 
         <Formik<Values>
-          initialValues={{ authorName: defaultName, text: '', rating: 1 }}
+          initialValues={{
+            authorName: isAuthenticated ? defaultName : '',
+            text: '',
+            rating: 5,
+          }}
           validationSchema={schema}
           onSubmit={async (v) => {
             if (!goodId) return;
 
             const trimmedName = v.authorName.trim();
-            const isGuest =
-              defaultName?.toLowerCase() === 'гість' ||
-              trimmedName.toLowerCase() === 'гість' ||
-              !trimmedName;
 
             await mutateAsync({
               goodId,
               payload: {
-                authorName: isGuest ? 'Гість' : trimmedName,
+                authorName: `${trimmedName}`,
                 text: v.text.trim() || undefined,
                 rating: v.rating,
               },
@@ -122,7 +127,7 @@ export default function ReviewFormModal({
                   name="authorName"
                   placeholder="Ваше ім’я"
                   className={`${css.input} ${touched.authorName && errors.authorName ? css.invalid : ''}`}
-                  disabled={true}
+                  disabled={isAuthenticated}
                 />
                 <ErrorMessage
                   name="authorName"

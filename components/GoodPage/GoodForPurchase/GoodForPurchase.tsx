@@ -21,6 +21,7 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
   const router = useRouter();
 
   const user = useAuthStore((s) => s.user);
+  const isAuthenticated = Boolean(user);
 
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
@@ -219,7 +220,8 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
       {isFormOpen && (
         <ReviewFormModal
           goodId={goodId}
-          defaultName={user?.username || 'Гість'}
+          isAuthenticated={isAuthenticated}
+          defaultName={user?.username || ''}
           onClose={() => setIsFormOpen(false)}
         />
       )}

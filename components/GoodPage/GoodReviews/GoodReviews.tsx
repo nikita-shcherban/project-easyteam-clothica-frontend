@@ -24,6 +24,7 @@ export default function GoodReviews({
 }: Props) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const user = useAuthStore((s) => s.user);
+  const isAuthenticated = Boolean(user);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['reviews', goodId ?? 'all'],
@@ -72,7 +73,8 @@ export default function GoodReviews({
       {isFormOpen && (
         <ReviewFormModal
           goodId={goodId}
-          defaultName={user?.username || 'Гість'}
+          defaultName={user?.username || ''}
+          isAuthenticated={isAuthenticated}
           onClose={() => setIsFormOpen(false)}
         />
       )}
