@@ -15,7 +15,6 @@
   color: var(--auth-text);
   line-height: 1.5;
   color-scheme: light;
-  margin-top: 79px;
 }
 
 .title {
@@ -31,17 +30,7 @@
 }
 
 @media (min-width: 1440px) {
-  .content {
-    margin-top: 126px;
-  }
-}
-
-@media (min-width: 1440px) {
   .title {
     font-size: 48px;
-  }
-
-  .content {
-    margin-top: 118px;
   }
 }
