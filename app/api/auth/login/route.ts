@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ValidationError } from 'yup';
 import axios from 'axios';
+import { api } from '@/app/api/api';
 import { loginSchema } from '@/lib/validation/auth';
 
 const sessionCookies = ['accessToken', 'refreshToken', 'sessionId'] as const;
@@ -49,19 +50,15 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const upstream = await axios.post(
-      new URL('/api/auth/login', backendUrl).toString(),
-      values,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        timeout: 15_000,
-        maxRedirects: 0,
-        validateStatus: () => true,
+    const upstream = await api.post('/auth/login', values, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
-    );
+      timeout: 15_000,
+      maxRedirects: 0,
+      validateStatus: () => true,
+    });
 
     if (upstream.status < 200 || upstream.status >= 300) {
       // Never reflect HTML, stack traces or raw backend messages into a toast.
