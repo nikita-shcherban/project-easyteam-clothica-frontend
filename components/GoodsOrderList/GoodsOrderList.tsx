@@ -23,6 +23,7 @@ export default function GoodsOrderList({
   const currency = items[0]?.currency ?? 'грн';
   // Доставка в суму не входить: безкоштовна від порогу, інакше за тарифами перевізника
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const isFreeDelivery = total >= FREE_DELIVERY_THRESHOLD;
 
   return (
     <div className={styles.wrapper}>
@@ -115,7 +116,7 @@ export default function GoodsOrderList({
         <div className={`${styles.row} ${styles.delivery}`}>
           <dt>Доставка</dt>
           <dd>
-            {total >= FREE_DELIVERY_THRESHOLD
+            {isFreeDelivery
               ? 'Безкоштовна доставка'
               : 'За тарифами перевізника'}
           </dd>
