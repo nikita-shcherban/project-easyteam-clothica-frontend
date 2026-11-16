@@ -1,9 +1,9 @@
 .content {
-  --auth-background: #f9fcf6;
-  --auth-text: #000;
-  --auth-accent: #c5e1a5;
-  --auth-border: rgb(0 0 0 / 15%);
-  --auth-error: #9d0000;
+  --auth-background: var(--theme-surface, #f9fcf6);
+  --auth-text: var(--theme-text, #000);
+  --auth-accent: var(--theme-accent, #c5e1a5);
+  --auth-border: var(--theme-border, rgb(0 0 0 / 15%));
+  --auth-error: var(--theme-error, #9d0000);
   --auth-radius: 16px;
 
   display: flex;
@@ -14,7 +14,7 @@
   min-width: 0;
   color: var(--auth-text);
   line-height: 1.5;
-  color-scheme: light;
+  color-scheme: inherit;
 }
 
 .title {

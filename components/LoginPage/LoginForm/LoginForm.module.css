@@ -30,7 +30,7 @@
 }
 
 input.placeholderColor {
-  color: rgb(0 0 0 / 60%);
+  color: var(--theme-muted, rgb(0 0 0 / 60%));
   opacity: 1;
 }
 
@@ -48,7 +48,7 @@ input.normalColor {
 }
 
 .input::placeholder {
-  color: rgb(0 0 0 / 60%);
+  color: var(--theme-muted, rgb(0 0 0 / 60%));
   opacity: 1;
 }
 .input:focus {
@@ -78,7 +78,7 @@ input.normalColor {
   padding: 5px 12px;
   border: 1px solid var(--auth-accent);
   border-radius: 100px;
-  color: var(--auth-text);
+  color: var(--theme-on-accent, var(--auth-text));
   background: var(--auth-accent);
   font: inherit;
   font-weight: 500;
@@ -87,13 +87,14 @@ input.normalColor {
 
 .submit:hover:not(:disabled),
 .submit:focus-visible:not(:disabled) {
-  background-color: #9db484;
-  border: 1px solid #4e5a42;
+  background-color: var(--theme-accent-hover, #9db484);
+  border: 1px solid var(--theme-focus, #4e5a42);
+  color: var(--theme-on-accent, #000);
 }
 
 .submit:active:not(:disabled) {
   background-color: #3b4331;
-  border: 1px solid #c5e1a5;
+  border: 1px solid var(--theme-accent, #c5e1a5);
   color: #fff;
 }
 
@@ -105,7 +106,7 @@ input.normalColor {
 .spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgb(0 0 0 / 20%);
+  border: 2px solid var(--theme-border, rgb(0 0 0 / 20%));
   border-top-color: currentColor;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;

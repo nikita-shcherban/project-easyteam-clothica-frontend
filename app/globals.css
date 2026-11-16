@@ -59,8 +59,8 @@ body {
   font-family: var(--font-nunito-sans), sans-serif;
   display: flex;
   flex-direction: column;
-  color: #000;
-  background-color: #f3f9ed;
+  color: var(--theme-text, #000);
+  background-color: var(--theme-page, #f3f9ed);
   min-height: 100vh;
   margin: 0;
 }

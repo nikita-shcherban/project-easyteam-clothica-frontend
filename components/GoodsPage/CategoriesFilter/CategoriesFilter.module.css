@@ -52,10 +52,10 @@
 }
 .group {
   padding: 24px 0;
-  border-top: 1px solid #c9cdc4;
+  border-top: 1px solid var(--theme-border, #c9cdc4);
 }
 .group:last-child {
-  border-bottom: 1px solid #c9cdc4;
+  border-bottom: 1px solid var(--theme-border, #c9cdc4);
 }
 .groupTitle {
   margin: 0;
@@ -82,16 +82,16 @@
   width: 20px;
   height: 20px;
   margin: 0;
-  border: 1px solid #c9cdc4;
-  background: #fff;
+  border: 1px solid var(--theme-border, #c9cdc4);
+  background: var(--theme-surface, #fff);
   cursor: pointer;
 }
 .checkbox {
   border-radius: 5px;
 }
 .checkbox:checked {
-  border-color: #000;
-  background: #000
+  border-color: var(--theme-border-strong, #000);
+  background: var(--theme-contrast, #000)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E")
     center / 14px no-repeat;
 }
@@ -99,8 +99,8 @@
   border-radius: 50%;
 }
 .radio:checked {
-  border-color: #000;
-  background: radial-gradient(#fff 0 3px, #000 4px);
+  border-color: var(--theme-border-strong, #000);
+  background: radial-gradient(#fff 0 3px, var(--theme-contrast, #000) 4px);
 }
 .flip {
   transform: rotate(180deg);
@@ -117,7 +117,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 16px;
-    border: 1px solid #c9cdc4;
+    border: 1px solid var(--theme-border, #c9cdc4);
     border-radius: 24px;
     background: none;
     font-size: 16px;
@@ -137,8 +137,8 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 16px 20px;
-    background: #f3f9ed;
-    border: 1px solid #c9cdc4;
+    background: var(--theme-page, #f3f9ed);
+    border: 1px solid var(--theme-border, #c9cdc4);
     border-radius: 20px;
     box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
   }

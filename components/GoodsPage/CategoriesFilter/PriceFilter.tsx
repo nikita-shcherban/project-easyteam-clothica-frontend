@@ -38,6 +38,7 @@ export default function PriceFilter({ min, max, onChange }: Props) {
     <div>
       <div className={s.slider}>
         <Slider
+          ariaLabelForHandle={["Мінімальна ціна", "Максимальна ціна"]}
           range
           min={0}
           max={PRICE_MAX}

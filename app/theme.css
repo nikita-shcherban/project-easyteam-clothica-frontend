@@ -1,0 +1,63 @@
+:root {
+  color-scheme: light;
+  --theme-border: #617157;
+  --theme-border-strong: #526444;
+  --theme-focus: #344428;
+  --theme-muted: #526444;
+  --theme-error: #9d0000;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --theme-page: #151b16;
+  --theme-surface: #202a21;
+  --theme-band: #253324;
+  --theme-card: #2b382b;
+  --theme-text: #f2f5eb;
+  --theme-muted: #bac5b5;
+  --theme-disabled-text: #8f9b89;
+  --theme-border: #7d9075;
+  --theme-border-strong: #7d9075;
+  --theme-subtle: rgb(242 245 235 / 8%);
+  --theme-hover: rgb(242 245 235 / 15%);
+  --theme-accent: #c5e1a5;
+  --theme-accent-hover: #d6edba;
+  --theme-accent-active: #a8ce82;
+  --theme-on-accent: #182215;
+  --theme-focus: #c5e1a5;
+  --theme-error: #ff9b9b;
+  --theme-contrast: #507840;
+  --theme-cart: #c5e1a5;
+  --theme-cart-icon: #182215;
+  --theme-loader-overlay: rgb(21 27 22 / 75%);
+  --theme-logo-filter: invert(96%) sepia(7%) saturate(362%) hue-rotate(32deg);
+}
+
+html :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 3px;
+}
+
+.skipLink {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: var(--theme-surface, #f9fcf6);
+  color: var(--theme-text, #000);
+  transform: translateY(calc(-100% - 16px));
+}
+
+.skipLink:focus {
+  transform: none;
+}
+
+@media (forced-colors: active) {
+  .skipLink { border: 1px solid CanvasText; }
+}
+html :is(input, textarea)::placeholder {
+  color: var(--theme-muted);
+  opacity: 1;
+}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useDialogFocus } from '@/lib/hooks/useDialogFocus';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -43,6 +44,7 @@ export default function ReviewFormModal({
   isAuthenticated,
   onClose,
 }: Props) {
+  const dialogRef = useDialogFocus();
   const qc = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
@@ -72,7 +74,7 @@ export default function ReviewFormModal({
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
-        className={css.modal}
+        ref={dialogRef} tabIndex={-1} className={css.modal}
         role="dialog"
         aria-modal="true"
         aria-labelledby="review-title"

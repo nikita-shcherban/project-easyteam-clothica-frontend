@@ -1,3 +1,7 @@
 .wrap { display: flex; justify-content: center; margin-top: 32px; min-height: 40px; }
-.btn { padding: 8px 14px; border: 0; border-radius: 20px; background: #c5e1a5; font-size: 16px; }
-.btn:hover { background: #b6d68f; }
+.btn { padding: 8px 14px; border: 0; border-radius: 20px; background: var(--theme-accent, #c5e1a5); font-size: 16px;
+  color: var(--theme-on-accent, #000);
+}
+.btn:hover { background: var(--theme-accent-hover, #b6d68f);
+  color: var(--theme-on-accent, #000);
+}

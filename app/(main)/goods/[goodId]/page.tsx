@@ -9,9 +9,9 @@ export default function GoodDetails() {
   const goodId = params.goodId as string;
 
   return (
-    <main>
+    <div>
       <GoodPage goodId={goodId} />
       <GoodReviews goodId={goodId} />
-    </main>
+    </div>
   );
 }

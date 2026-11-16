@@ -19,7 +19,7 @@
   max-width: 480px;
   padding: 48px 24px 32px;
   border-radius: 20px;
-  background-color: #f3f9ed;
+  background-color: var(--theme-page, #f3f9ed);
   text-align: center;
 }
 
@@ -36,14 +36,14 @@
   border: 0;
   border-radius: 50%;
   background-color: transparent;
-  color: #000;
+  color: var(--theme-text, #000);
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .close:hover,
 .close:focus-visible {
-  background-color: rgb(0 0 0 / 0.05);
+  background-color: var(--theme-subtle, rgb(0 0 0 / 0.05));
 }
 
 .closeIcon {
@@ -61,7 +61,7 @@
 .text {
   font-size: 16px;
   line-height: 1.5;
-  color: rgb(0 0 0 / 0.7);
+  color: var(--theme-muted, rgb(0 0 0 / 0.7));
 }
 
 .ok {
@@ -70,16 +70,18 @@
   padding: 14px 24px;
   border: 0;
   border-radius: 100px;
-  background-color: #c5e1a5;
+  background-color: var(--theme-accent, #c5e1a5);
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  color: var(--theme-on-accent, #000);
 }
 
 .ok:hover,
 .ok:focus-visible {
-  background-color: #b0d28d;
+  background-color: var(--theme-accent-hover, #b0d28d);
+  color: var(--theme-on-accent, #000);
 }
 
 @media screen and (min-width: 768px) {

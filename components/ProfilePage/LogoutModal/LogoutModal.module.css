@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 440px;
   padding: 32px 24px;
-  background-color: #f9fcf6;
+  background-color: var(--theme-surface, #f9fcf6);
   border-radius: 16px;
   text-align: center;
   font-family: var(--font-inter), sans-serif;
@@ -26,7 +26,7 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
 }
 .actions {
   display: flex;
@@ -38,23 +38,24 @@
 .actions button {
   min-width: 100px;
   padding: 10px 20px;
-  border: 1px solid #c5e1a5;
+  border: 1px solid var(--theme-accent, #c5e1a5);
   border-radius: 100px;
-  background-color: #c5e1a5;
+  background-color: var(--theme-accent, #c5e1a5);
   font-family: var(--font-inter), sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-on-accent, #000);
   cursor: pointer;
 }
 
 .actions button:hover {
-  background-color: #9db484;
-  border-color: #4e5a42;
+  background-color: var(--theme-accent-hover, #9db484);
+  border-color: var(--theme-focus, #4e5a42);
+  color: var(--theme-on-accent, #000);
 }
 
 .actions button:focus-visible {
-  outline: 2px solid #1a1a1a;
+  outline: 2px solid var(--theme-focus, #1a1a1a);
   outline-offset: 3px;
 }

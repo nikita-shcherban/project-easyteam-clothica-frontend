@@ -2,6 +2,9 @@ import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from 'next';
 import { Nunito_Sans, Inter } from 'next/font/google';
 import './globals.css';
+import './theme.css';
+import ThemeSync from '@/components/Theme/ThemeSync';
+import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import 'izitoast/dist/css/iziToast.min.css';
 import Footer from '@/components/Footer/Footer';
 import SiteFooter from '@/components/Footer/SiteFooter';
@@ -39,12 +42,23 @@ export default function RootLayout({
   modal,
 }: Readonly<RootLayoutProps>) {
   return (
-    <html lang="en" className={`${nunitoSans.variable} ${inter.variable}`}>
+    <html
+      lang="uk"
+      className={`${nunitoSans.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
+        <a href="#main-content" className="skipLink">
+          Перейти до вмісту
+        </a>
+        <ThemeSync />
         <TanStackProvider>
           <AuthProvider>
             <Header />
-            <main>
+            <main id="main-content" tabIndex={-1}>
               {children}
               {modal}
             </main>

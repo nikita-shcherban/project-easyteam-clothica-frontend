@@ -6,7 +6,7 @@
   align-items: center;
   gap: 16px;
   padding: 28px 24px;
-  background: #d6eac0;
+  background: var(--theme-band, #d6eac0);
   border-radius: 16px;
   text-align: center;
 }
@@ -20,12 +20,12 @@
 }
 .btn {
   padding: 6px 12px;
-  border: 1px solid #c5e1a5;
+  border: 1px solid var(--theme-accent, #c5e1a5);
   height: 36px;
   width: 115px;
   border-radius: 100px;
   font-family: var(--font-inter), sans-serif;
-  background: #c5e1a5;
+  background: var(--theme-accent, #c5e1a5);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
@@ -33,16 +33,18 @@
   align-self: center;
   white-space: nowrap;
   text-align: center;
+  color: var(--theme-on-accent, #000);
 }
 
 .btn:hover,
 .btn:focus-visible {
-  background-color: #9db484;
-  border: 1px solid #4e5a42;
+  background-color: var(--theme-accent-hover, #9db484);
+  border: 1px solid var(--theme-focus, #4e5a42);
+  color: var(--theme-on-accent, #000);
 }
 
 .btn:focus-visible {
-  outline: 2px solid #4e5a42;
+  outline: 2px solid var(--theme-focus, #4e5a42);
   outline-offset: 2px;
 }
 

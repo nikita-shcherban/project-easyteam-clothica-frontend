@@ -51,7 +51,7 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
   };
 
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.grid}>
         {/* Ліва колонка: Зображення */}
         <div className={styles.imageWrapper}>
@@ -225,6 +225,6 @@ export default function GoodPage({ goodId }: GoodDetailsProps) {
           onClose={() => setIsFormOpen(false)}
         />
       )}
-    </main>
+    </div>
   );
 }

@@ -5,7 +5,7 @@
 /* --- Mobile (base styles, default for 320px - 767px) --- */
 .hero {
   width: 100%;
-  background-color: #f3f9ed;
+  background-color: var(--theme-page, #f3f9ed);
   padding-block: 64px;
 }
 
@@ -35,7 +35,7 @@
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.4px;
-  color: #000000;
+  color: var(--theme-text, #000000);
   margin-bottom: 24px;
 }
 
@@ -44,7 +44,7 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
-  color: #000000;
+  color: var(--theme-text, #000000);
   margin-bottom: 32px;
 }
 
@@ -81,15 +81,16 @@
 }
 
 .primaryButton {
-  background-color: #c5e1a5;
-  color: #000000;
-  border: 1px solid #c5e1a5;
+  background-color: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000000);
+  border: 1px solid var(--theme-accent, #c5e1a5);
 }
 
 .primaryButton:hover {
-  background-color: #b0d28d;
-  border-color: #b0d28d;
+  background-color: var(--theme-accent-hover, #b0d28d);
+  border-color: var(--theme-accent-hover, #b0d28d);
   transform: translateY(-1px);
+  color: var(--theme-on-accent, #000);
 }
 
 .primaryButton:active {
@@ -97,13 +98,13 @@
 }
 
 .secondaryButton {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #000000;
+  background-color: var(--theme-subtle, rgba(0, 0, 0, 0.05));
+  color: var(--theme-text, #000000);
   border: 1px solid transparent;
 }
 
 .secondaryButton:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--theme-hover, rgba(0, 0, 0, 0.1));
   transform: translateY(-1px);
 }
 

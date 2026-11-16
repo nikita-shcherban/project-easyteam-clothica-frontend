@@ -1,5 +1,6 @@
 'use client';
 
+import { useDialogFocus } from '@/lib/hooks/useDialogFocus';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useSaveErrorStore } from '@/lib/store/save-error-store';
@@ -7,6 +8,7 @@ import styles from './SaveErrorModal.module.css';
 
 export default function SaveErrorModal() {
   const { isOpen, message, hideSaveError } = useSaveErrorStore();
+  const dialogRef = useDialogFocus(isOpen);
   const okRef = useRef<HTMLButtonElement>(null);
 
   // Лише для розробки: відкрити модалку через ?saveError у адресі
@@ -45,6 +47,8 @@ export default function SaveErrorModal() {
       }}
     >
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         className={styles.modal}
         role="alertdialog"
         aria-modal="true"

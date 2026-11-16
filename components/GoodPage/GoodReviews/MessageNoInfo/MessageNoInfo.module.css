@@ -6,7 +6,7 @@
   width: 100%;
   padding: 24px 16px;
   border-radius: 16px;
-  background: #d8e9c4;
+  background: var(--theme-band, #d8e9c4);
   text-align: center;
 }
 .text {
@@ -20,8 +20,8 @@
   padding: 8px 16px;
   border: 0;
   border-radius: 24px;
-  background: #c5e1a5;
-  color: #000;
+  background: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;
@@ -29,10 +29,11 @@
   transition: background-color 0.2s;
 }
 .btn:hover {
-  background: #b0d487;
+  background: var(--theme-accent-hover, #b0d487);
+  color: var(--theme-on-accent, #000);
 }
 .btn:focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid var(--theme-border-strong, #000);
   outline-offset: 2px;
 }
 

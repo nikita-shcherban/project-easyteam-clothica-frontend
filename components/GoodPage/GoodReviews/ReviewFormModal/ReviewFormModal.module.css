@@ -15,7 +15,7 @@
   max-width: 710px;
   padding: 48px 24px 32px;
   border-radius: 16px;
-  background: #fafbf7;
+  background: var(--theme-surface, #fafbf7);
 }
 .close {
   position: absolute;
@@ -50,20 +50,20 @@
 .input {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #d3d8cb;
+  border: 1px solid var(--theme-border, #d3d8cb);
   border-radius: 24px;
   background: transparent;
   font: inherit;
 }
 .input:disabled {
-  background-color: #f5f5f5;
-  color: #999;
-  border-color: #e0e0e0;
+  background-color: var(--theme-surface, #f5f5f5);
+  color: var(--theme-disabled-text, #999);
+  border-color: var(--theme-border, #e0e0e0);
   cursor: not-allowed;
   opacity: 1;
 }
 .input:focus-visible {
-  outline: 2px solid #9ccc65;
+  outline: 2px solid var(--theme-focus, #9ccc65);
   outline-offset: 1px;
 }
 .textarea {
@@ -72,15 +72,15 @@
   resize: vertical;
 }
 .invalid {
-  border-color: #c62828;
+  border-color: var(--theme-error, #c62828);
 }
 .error {
-  color: #c62828;
+  color: var(--theme-error, #c62828);
   font-size: 13px;
 }
 .counter {
   align-self: flex-end;
-  color: #7a8070;
+  color: var(--theme-muted, #7a8070);
   font-size: 12px;
 }
 .submit {
@@ -88,14 +88,16 @@
   padding: 10px 24px;
   border: 0;
   border-radius: 24px;
-  background: #c5e1a5;
+  background: var(--theme-accent, #c5e1a5);
   font: inherit;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
+  color: var(--theme-on-accent, #000);
 }
 .submit:hover:not(:disabled) {
-  background: #b0d487;
+  background: var(--theme-accent-hover, #b0d487);
+  color: var(--theme-on-accent, #000);
 }
 .submit:disabled {
   opacity: 0.6;

@@ -1,4 +1,5 @@
 'use client';
+import { useDialogFocus } from '@/lib/hooks/useDialogFocus';
 import { useEffect } from 'react';
 import styles from './LogoutModal.module.css';
 
@@ -8,6 +9,7 @@ interface LogoutModalProps {
 }
 
 export default function LogoutModal({ onConfirm, onCancel }: LogoutModalProps) {
+  const dialogRef = useDialogFocus();
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -31,6 +33,8 @@ export default function LogoutModal({ onConfirm, onCancel }: LogoutModalProps) {
       }}
     >
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         className={styles.modal}
         role="dialog"
         aria-modal="true"
