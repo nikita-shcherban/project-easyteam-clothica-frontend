@@ -3,6 +3,8 @@
 import type { BasketItem } from '@/types/basket';
 import styles from './GoodsOrderList.module.css';
 
+const FREE_DELIVERY_THRESHOLD = 1000;
+
 const formatPrice = (value: number, currency: string) =>
   `${value.toLocaleString('uk-UA')} ${currency}`;
 
@@ -19,7 +21,7 @@ export default function GoodsOrderList({
   onQuantityChange,
 }: GoodsOrderListProps) {
   const currency = items[0]?.currency ?? 'грн';
-  // Доставка — за тарифами перевізника, тому в сумі 0
+  // Доставка в суму не входить: безкоштовна від порогу, інакше за тарифами перевізника
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   return (
@@ -112,7 +114,11 @@ export default function GoodsOrderList({
         </div>
         <div className={`${styles.row} ${styles.delivery}`}>
           <dt>Доставка</dt>
-          <dd>За тарифами перевізника</dd>
+          <dd>
+            {total >= FREE_DELIVERY_THRESHOLD
+              ? 'Безкоштовна доставка'
+              : 'За тарифами перевізника'}
+          </dd>
         </div>
         <div className={`${styles.row} ${styles.total}`}>
           <dt>Всього</dt>
