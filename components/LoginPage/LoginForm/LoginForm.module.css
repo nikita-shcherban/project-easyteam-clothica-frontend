@@ -85,13 +85,18 @@ input.normalColor {
   cursor: pointer;
 }
 
-.submit:hover:not(:disabled) {
-  background: #b4d68e;
+.submit:hover:not(:disabled),
+.submit:focus-visible:not(:disabled) {
+  background-color: #9db484;
+  border: 1px solid #4e5a42;
 }
-.submit:focus-visible {
-  outline: 2px solid var(--auth-text);
-  outline-offset: 3px;
+
+.submit:active:not(:disabled) {
+  background-color: #3b4331;
+  border: 1px solid #c5e1a5;
+  color: #fff;
 }
+
 .submit:disabled {
   cursor: wait;
   opacity: 0.7;

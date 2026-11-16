@@ -29,8 +29,7 @@
 
 .content > * {
   width: 100%;
-  max-width: 335px;
-  min-width: 320px;
+  max-width: 375px;
 }
 
 .footer {
