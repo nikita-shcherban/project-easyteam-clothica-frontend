@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ValidationError } from 'yup';
+import axios from 'axios';
 import { loginSchema } from '@/lib/validation/auth';
 
 const sessionCookies = ['accessToken', 'refreshToken', 'sessionId'] as const;
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
     return errorResponse('Expected application/json', 415);
   }
 
-  const backendUrl = process.env.API_BASE_URL;
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!backendUrl)
     return errorResponse('Authentication is not configured', 503);
 
@@ -48,19 +49,21 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const upstream = await fetch(new URL('/api/auth/login', backendUrl), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+    const upstream = await axios.post(
+      new URL('/api/auth/login', backendUrl).toString(),
+      values,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        timeout: 15_000,
+        maxRedirects: 0,
+        validateStatus: () => true,
       },
-      body: JSON.stringify(values),
-      cache: 'no-store',
-      redirect: 'error',
-      signal: AbortSignal.timeout(15_000),
-    });
+    );
 
-    if (!upstream.ok) {
+    if (upstream.status < 200 || upstream.status >= 300) {
       // Never reflect HTML, stack traces or raw backend messages into a toast.
       const status = [400, 401, 403, 422, 429].includes(upstream.status)
         ? upstream.status
@@ -68,7 +71,7 @@ export async function POST(request: NextRequest) {
       return errorResponse('Authentication failed', status);
     }
 
-    const user: unknown = await upstream.json();
+    const user: unknown = upstream.data;
 
     if (
       !user ||
@@ -86,7 +89,7 @@ export async function POST(request: NextRequest) {
     }
 
     const cookieHeaders = new Headers();
-    for (const cookie of upstream.headers.getSetCookie()) {
+    for (const cookie of upstream.headers['set-cookie'] ?? []) {
       cookieHeaders.append('set-cookie', cookie);
     }
     const parsedCookies = new NextResponse(null, { headers: cookieHeaders })
@@ -124,7 +127,9 @@ export async function POST(request: NextRequest) {
     }
     return response;
   } catch (error) {
-    const timedOut = error instanceof Error && error.name === 'TimeoutError';
+    const timedOut =
+      axios.isAxiosError(error) &&
+      ['ECONNABORTED', 'ETIMEDOUT'].includes(error.code ?? '');
     return errorResponse(
       'Authentication service unavailable',
       timedOut ? 504 : 502,
