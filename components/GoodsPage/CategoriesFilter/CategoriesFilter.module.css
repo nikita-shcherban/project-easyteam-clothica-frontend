@@ -37,6 +37,7 @@
   list-style: none;
 }
 .categories button {
+  cursor: pointer;
   padding: 0;
   border: 0;
   background: none;
@@ -44,11 +45,11 @@
   text-align: left;
 }
 .categories button:hover {
-  text-decoration: underline;
+  border-bottom: 1px solid #000;
 }
 .categories .active {
-  font-weight: 700;
-  text-decoration: underline;
+  color: #9db484;
+  border-bottom: 1px solid #4e5a42;
 }
 .group {
   padding: 24px 0;
@@ -74,6 +75,12 @@
   gap: 8px;
   font-size: 16px;
   cursor: pointer;
+}
+.option:hover {
+  text-decoration: underline;
+}
+.option:active {
+  color: #4e5a42;
 }
 .checkbox,
 .radio {
