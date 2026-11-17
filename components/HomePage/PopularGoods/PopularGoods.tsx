@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Keyboard } from 'swiper/modules';
+import Loader from '@/components/Loader/Loader';
 
 import 'swiper/css';
 
