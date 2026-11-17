@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import PersonalPage from '@/components/PersonalPage/PersonalPage';
 
 export const metadata: Metadata = {
-  title: 'Редагування даних покупця | Clothica',
+  title: 'Редагування даних покупця',
   description: 'Сторінка оновлення персональних даних користувача Clothica',
 };
 
