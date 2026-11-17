@@ -14,13 +14,11 @@ export function useAuthSubmit<Values>(
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
   const pending = useRef(false);
-  const [error, setError] = useState<string | null>(null);
   const [redirecting, setRedirecting] = useState(false);
 
   async function submit(values: Values) {
     if (pending.current) return;
     pending.current = true;
-    setError(null);
 
     try {
       const user = await authenticate(values);
@@ -30,7 +28,6 @@ export function useAuthSubmit<Values>(
       router.refresh();
     } catch (cause) {
       const message = getErrorMessage(cause);
-      setError(message);
       void notifyAuthError(message).catch((notificationError: unknown) => {
         console.error('Failed to display authentication error notification', {
           notificationError,
@@ -40,5 +37,5 @@ export function useAuthSubmit<Values>(
     }
   }
 
-  return { submit, error, redirecting };
+  return { submit, redirecting };
 }
