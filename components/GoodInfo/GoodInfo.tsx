@@ -18,13 +18,13 @@ export default function GoodInfo({ good }: { good: Good }) {
           {good.price.value} {good.price.currency}
         </p>
         <p className={s.meta}>
-          <span className={s.metaItem}>
-            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden>
+          <span className={s.metaItem} aria-label={`Рейтинг: ${good.rating ?? 0} з 5`}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
               <path d="M12 2l3 7 7 .6-5.3 4.7 1.6 7.2L12 17.8l-6.3 3.7 1.6-7.2L2 9.6 9 9z" />
             </svg>
             {good.rating ?? 0}
           </span>
-          <span className={s.metaItem}>
+          <span className={s.metaItem} aria-label={`Кількість відгуків: ${good.feedbacksCount ?? 0}`}>
             <svg
               width="14"
               height="14"
@@ -40,7 +40,7 @@ export default function GoodInfo({ good }: { good: Good }) {
           </span>
         </p>
       </div>
-      <Link className={s.btn} href={`/goods/${good._id}`}>
+      <Link className={s.btn} href={`/goods/${good._id}`} aria-label={`Детальніше: ${good.name}`}>
         Детальніше
       </Link>
     </article>

@@ -23,7 +23,7 @@ export default function GoodsPage() {
     : 'Всі товари';
 
   return (
-    <main className={s.page}>
+    <div className={s.page}>
       <h1 className={s.title}>{title}</h1>
       <div className={s.layout}>
         <CategoriesFilter
@@ -44,6 +44,6 @@ export default function GoodsPage() {
           )}
         </section>
       </div>
-    </main>
+    </div>
   );
 }

@@ -7,12 +7,12 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <main className={css.main}>
+    <div className={css.main}>
       <div className={css.content}>{children}</div>
 
       <footer className={css.footer}>
         © 2025 Clothica. Всі права захищені.
       </footer>
-    </main>
+    </div>
   );
 }

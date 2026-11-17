@@ -62,21 +62,22 @@
   height: 42px;
   border: 0;
   border-radius: 50%;
-  background: #c5e1a5;
-  color: #000;
+  background: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
   cursor: pointer;
   transition: background-color 0.2s;
 }
 .arrow:hover:not(:disabled) {
-  background: #b0d487;
+  background: var(--theme-accent-hover, #b0d487);
+  color: var(--theme-on-accent, #000);
 }
 .arrow:disabled {
-  background: #e3ecd6;
-  color: #9aa38d;
+  background: var(--theme-card, #e3ecd6);
+  color: var(--theme-disabled-text, #9aa38d);
   cursor: not-allowed;
 }
 .arrow:focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid var(--theme-border-strong, #000);
   outline-offset: 2px;
 }
 .arrowIcon {

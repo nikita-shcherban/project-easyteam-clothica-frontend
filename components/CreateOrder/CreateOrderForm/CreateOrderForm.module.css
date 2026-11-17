@@ -32,14 +32,14 @@
   height: 40px;
   padding: 0 12px;
   font-size: 14px;
-  border: 1px solid #cfe3bd;
+  border: 1px solid var(--theme-border, #cfe3bd);
   border-radius: 20px;
   background: transparent;
   outline: none;
 }
 
 .input:focus {
-  border-color: #8fbf6a;
+  border-color: var(--theme-focus, #8fbf6a);
 }
 
 .textarea {
@@ -50,12 +50,12 @@
 }
 
 .inputError {
-  border-color: #d93025;
+  border-color: var(--theme-error, #d93025);
 }
 
 .error {
   font-size: 12px;
-  color: #d93025;
+  color: var(--theme-error, #d93025);
 }
 
 .submit {
@@ -65,9 +65,10 @@
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
-  background: #c5e1a5;
+  background: var(--theme-accent, #c5e1a5);
   font-weight: 600;
   cursor: pointer;
+  color: var(--theme-on-accent, #000);
 }
 
 .submit:disabled {

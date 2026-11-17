@@ -15,6 +15,7 @@ import { useAuthStore } from '@/lib/store/auth-store';
 import { useBasketStore } from '@/lib/store/basket-store';
 import type { User } from '@/types/user';
 import css from './Header.module.css';
+import ThemeSwitcher from '@/components/Theme/ThemeSwitcher';
 
 const links = [
   { href: '/', label: 'Головна' },
@@ -237,7 +238,7 @@ export default function HeaderClient({
   if (pathname === '/auth' || pathname.startsWith('/auth/')) {
     return (
       <header className={css.authHeader}>
-        <div className={css.authContainer}>{brand()}</div>
+        <div className={css.authContainer}>{brand()}<ThemeSwitcher compact /></div>
       </header>
     );
   }
@@ -250,6 +251,7 @@ export default function HeaderClient({
           {navigation()}
         </nav>
         <div className={css.actions}>
+          <div className={css.desktopTheme}><ThemeSwitcher compact /></div>
           <div className={css.desktopAuth}>{authActions()}</div>
           <button
             type="button"
@@ -297,6 +299,7 @@ export default function HeaderClient({
             {navigation()}
           </nav>
           <div className={css.mobileAuth}>{authActions()}</div>
+          <div className={css.menuTheme}><ThemeSwitcher /></div>
           {error && (
             <p className={css.error} role="alert">
               {error}

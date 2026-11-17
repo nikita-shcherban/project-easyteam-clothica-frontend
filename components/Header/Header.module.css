@@ -1,16 +1,19 @@
+.desktopTheme { display: none; }
+.menuTheme { margin-top: 32px; }
 .header {
-  background: #d6eac0;
-  border-bottom: 1px solid rgb(0 0 0 / 15%);
+  background: var(--theme-band, #d6eac0);
+  border-bottom: 1px solid var(--theme-border, rgb(0 0 0 / 15%));
   font-family: var(--font-inter), sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
 
 .authHeader {
-  background: #f9fcf6;
+  background: var(--theme-surface, #f9fcf6);
 }
 
 .authContainer {
+  justify-content: space-between;
   display: flex;
   align-items: center;
   width: 100%;
@@ -21,7 +24,7 @@
 }
 
 .authHeader a:focus-visible {
-  outline: 2px solid #344428;
+  outline: 2px solid var(--theme-focus, #344428);
   outline-offset: 4px;
 }
 
@@ -45,6 +48,7 @@
 }
 
 .brand img {
+  filter: var(--theme-logo-filter, none);
   width: 81px;
   height: 17px;
 }
@@ -82,18 +86,18 @@
 }
 
 .iconButton {
-  background: rgb(0 0 0 / 5%);
+  background: var(--theme-subtle, rgb(0 0 0 / 5%));
 }
 .iconButton:hover {
-  background: rgb(0 0 0 / 15%);
+  background: var(--theme-hover, rgb(0 0 0 / 15%));
 }
 .cart {
   position: relative;
-  background: #000;
-  color: #fff;
+  background: var(--theme-cart, #000);
+  color: var(--theme-cart-icon, #fff);
 }
 .cart:hover {
-  background: #344428;
+  background: var(--theme-accent-hover, #344428);
 }
 
 .badge {
@@ -135,17 +139,19 @@
   padding: 6px 16px;
   border: 0;
   border-radius: 100px;
-  background: rgb(0 0 0 / 5%);
-  color: #000;
+  background: var(--theme-subtle, rgb(0 0 0 / 5%));
+  color: var(--theme-text, #000);
   font: inherit;
   white-space: nowrap;
 }
 
 .register {
-  background: #c5e1a5;
+  background: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
 }
 .authLink:hover {
-  background: #b0d28d;
+  background: var(--theme-accent-hover, #b0d28d);
+  color: var(--theme-on-accent, #000);
 }
 .authLink:disabled {
   opacity: 0.6;
@@ -154,7 +160,7 @@
 
 .header a:focus-visible,
 .header button:focus-visible {
-  outline: 2px solid #344428;
+  outline: 2px solid var(--theme-focus, #344428);
   outline-offset: 4px;
 }
 
@@ -169,8 +175,8 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: #d6eac0;
-  color: #000;
+  background: var(--theme-band, #d6eac0);
+  color: var(--theme-text, #000);
   overflow-y: auto;
   overscroll-behavior: contain;
   opacity: 0;
@@ -187,7 +193,7 @@
   transform: translateY(0);
 }
 .mobileMenu::backdrop {
-  background: #d6eac0;
+  background: var(--theme-band, #d6eac0);
 }
 
 @starting-style {
@@ -223,7 +229,7 @@
 }
 .error {
   padding: 12px 20px;
-  color: #8b0000;
+  color: var(--theme-error, #8b0000);
   text-align: center;
 }
 
@@ -240,17 +246,18 @@
 }
 
 @media (min-width: 768px) {
+  .desktopTheme { display: flex; }
   .authContainer {
     padding-inline: 32px;
   }
   .container {
     max-width: 768px;
     padding-inline: 32px;
-    gap: 24px;
+    gap: 12px;
   }
   .desktopNav {
     display: flex;
-    gap: 24px;
+    gap: 16px;
     margin-inline: auto;
   }
   .desktopAuth {
@@ -258,10 +265,10 @@
     gap: 8px;
   }
   .actions {
-    gap: 16px;
+    gap: 8px;
   }
   .authLink {
-    padding-inline: 12px;
+    padding-inline: 8px;
   }
   .menuButton {
     display: none;

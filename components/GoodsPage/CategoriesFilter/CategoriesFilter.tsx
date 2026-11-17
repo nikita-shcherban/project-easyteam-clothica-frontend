@@ -39,7 +39,7 @@ function Group({
     <section className={s.group}>
       <div className={s.row}>
         <h3 className={s.groupTitle}>{title}</h3>
-        <button type="button" className={s.link} onClick={onClear}>
+        <button type="button" className={s.link} onClick={onClear} aria-label={`Очистити фільтр: ${title}`}>
           Очистити
         </button>
       </div>

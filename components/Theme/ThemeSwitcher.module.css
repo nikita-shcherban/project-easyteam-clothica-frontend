@@ -1,0 +1,60 @@
+.control,
+.compact {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--theme-text, #000);
+}
+
+.control {
+  width: 100%;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid var(--theme-border, rgb(0 0 0 / 15%));
+  border-radius: 20px;
+  background: var(--theme-surface, #f9fcf6);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.control .select {
+  margin-left: auto;
+  max-width: 100%;
+}
+
+.compact {
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--theme-subtle, rgb(0 0 0 / 5%));
+}
+
+.compact .select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.compact:hover {
+  background: var(--theme-hover, rgb(0 0 0 / 15%));
+}
+
+.control .select:focus-visible,
+.compact:has(.select:focus-visible) {
+  outline: 2px solid var(--theme-focus, #344428);
+  outline-offset: 3px;
+}

@@ -4,8 +4,8 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
-  background-color: #f5f7ee;
-  color: #1c1d1a;
+  background-color: var(--theme-page, #f5f7ee);
+  color: var(--theme-text, #1c1d1a);
 }
 
 .stateMessage {
@@ -32,7 +32,7 @@
   margin-right: auto;
   border-radius: 16px;
   overflow: hidden;
-  background-color: #e4e4e2;
+  background-color: var(--theme-card, #e4e4e2);
 }
 
 .image {
@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  color: var(--theme-muted, #666);
   font-size: 16px;
 }
 
@@ -58,7 +58,7 @@
   justify-content: flex-start;
   flex-direction: row;
   gap: 8px;
-  color: #000000;
+  color: var(--theme-text, #000000);
   font-size: 14px;
   flex-wrap: wrap;
   line-height: 1.5;
@@ -83,7 +83,7 @@
   font-size: 32px;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: #000000;
+  color: var(--theme-text, #000000);
   margin-bottom: 24px;
 }
 
@@ -105,7 +105,7 @@
 .divider {
   display: inline-flex;
   align-items: center;
-  color: var(--color-scheme-1-border, #ccc);
+  color: var(--color-scheme-1-border, var(--theme-border, #ccc));
   height: 28px;
 }
 
@@ -123,13 +123,13 @@
 }
 
 .stars {
-  color: #1c1d1a;
+  color: var(--theme-text, #1c1d1a);
   letter-spacing: 5px;
   font-size: 20px;
 }
 
 .ratingText {
-  color: #000;
+  color: var(--theme-text, #000);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
@@ -139,7 +139,7 @@
 .prevDescription {
   font-size: 16px;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
   margin-bottom: 24px;
 }
 
@@ -153,23 +153,23 @@
   font-weight: 400;
   margin-bottom: 8px;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
 }
 
 .select {
   width: 100%;
   padding: 12px 16px;
   border-radius: 10px;
-  border: 1px solid #d5d7ce;
+  border: 1px solid var(--theme-border, #d5d7ce);
   background-color: transparent;
   font-size: 15px;
-  color: #1c1d1a;
+  color: var(--theme-text, #1c1d1a);
   cursor: pointer;
 }
 
 .select option {
-  background-color: #f5f7ee;
-  color: #1c1d1a;
+  background-color: var(--theme-page, #f5f7ee);
+  color: var(--theme-text, #1c1d1a);
   padding: 10px;
 }
 
@@ -190,9 +190,9 @@
   width: 100%;
   padding: 12px 24px;
   border-radius: 100px;
-  border: 1px solid #c5e1a5;
-  background-color: #c5e1a5;
-  color: #000;
+  border: 1px solid var(--theme-accent, #c5e1a5);
+  background-color: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -200,15 +200,16 @@
 }
 
 .addToCartBtn:hover {
-  border: 1px solid #9db484;
-  background-color: #9db484;
+  border: 1px solid var(--theme-accent-hover, #9db484);
+  background-color: var(--theme-accent-hover, #9db484);
+  color: var(--theme-on-accent, #000);
 }
 
 .quantityInput {
   width: 100%;
   padding: 10px;
   border-radius: 16px;
-  border: 1px solid #d5d7ce;
+  border: 1px solid var(--theme-border, #d5d7ce);
   background-color: transparent;
   text-align: center;
   font-size: 15px;
@@ -220,8 +221,8 @@
   padding: 6px 12px;
   border-radius: 100px;
   border: 1px solid rgba(255, 255, 255, 0);
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #000;
+  background-color: var(--theme-subtle, rgba(0, 0, 0, 0.05));
+  color: var(--theme-text, #000);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
@@ -229,8 +230,8 @@
 }
 
 .buyNowBtn:hover {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--theme-border-strong, rgba(0, 0, 0, 0.5));
+  background-color: var(--theme-hover, rgba(0, 0, 0, 0.15));
 }
 
 .deliveryNote {
@@ -238,13 +239,13 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
   margin: 4px 0 0 0;
 }
 
 .detailsSection {
   margin-bottom: 64px;
-  border-top: 1px solid #e2e4db;
+  border-top: 1px solid var(--theme-border, #e2e4db);
   padding-top: 8px;
 }
 
@@ -258,14 +259,14 @@
   font-weight: 400;
   line-height: 1.5;
   padding-bottom: 6px;
-  border-bottom: 2px solid #8fa864;
+  border-bottom: 2px solid var(--theme-focus, #8fa864);
 }
 
 .description {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -276,7 +277,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
 }
 
 .charList {

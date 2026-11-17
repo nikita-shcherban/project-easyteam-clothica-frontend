@@ -20,24 +20,25 @@
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: #000;
+  color: var(--theme-text, #000);
 }
 .btn {
   padding: 8px 16px;
   border: 0;
   border-radius: 100px;
-  background: #c5e1a5;
-  color: #000;
+  background: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
   cursor: pointer;
 }
 .btn:hover {
-  background: #b0d487;
+  background: var(--theme-accent-hover, #b0d487);
+  color: var(--theme-on-accent, #000);
 }
 .btn:focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid var(--theme-border-strong, #000);
   outline-offset: 2px;
 }
 .status {

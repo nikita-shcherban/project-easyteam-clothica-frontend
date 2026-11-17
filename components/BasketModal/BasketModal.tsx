@@ -1,5 +1,6 @@
 'use client';
 
+import { useDialogFocus } from '@/lib/hooks/useDialogFocus';
 import { useRouter } from 'next/navigation';
 import { useEffect, useSyncExternalStore } from 'react';
 import GoodsOrderList from '@/components/GoodsOrderList/GoodsOrderList';
@@ -8,6 +9,7 @@ import { useBasketStore } from '@/lib/store/basket-store';
 import styles from './BasketModal.module.css';
 
 export default function BasketModal() {
+  const dialogRef = useDialogFocus();
   const router = useRouter();
   const items = useBasketStore((s) => s.items);
   const removeItem = useBasketStore((s) => s.removeItem);
@@ -47,6 +49,8 @@ export default function BasketModal() {
       }}
     >
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         className={styles.modal}
         role="dialog"
         aria-modal="true"

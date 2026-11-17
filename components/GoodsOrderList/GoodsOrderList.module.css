@@ -4,7 +4,7 @@
   gap: 24px;
   font-family: var(--font-inter), sans-serif;
   line-height: 1.5;
-  color: #000;
+  color: var(--theme-text, #000);
 }
 
 /* Понад 4 товари — вертикальний скрол */
@@ -28,7 +28,7 @@
   height: 101px;
   border-radius: 16px;
   object-fit: cover;
-  background-color: #e8efe2;
+  background-color: var(--theme-card, #e8efe2);
 }
 
 .content {
@@ -86,7 +86,7 @@
 .qty {
   width: 64px;
   padding: 8px;
-  border: 1px solid rgb(0 0 0 / 0.15);
+  border: 1px solid var(--theme-border, rgb(0 0 0 / 0.15));
   border-radius: 16px;
   background-color: transparent;
   font-size: 16px;
@@ -102,14 +102,14 @@
   padding: 4px;
   border: 0;
   border-radius: 100px;
-  background-color: rgb(0 0 0 / 0.05);
+  background-color: var(--theme-subtle, rgb(0 0 0 / 0.05));
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .remove:hover,
 .remove:focus-visible {
-  background-color: rgb(0 0 0 / 0.1);
+  background-color: var(--theme-hover, rgb(0 0 0 / 0.1));
 }
 
 .removeIcon {
@@ -133,7 +133,7 @@
 
 .subtotal {
   padding: 12px 0 4px;
-  border-top: 1px solid rgb(0 0 0 / 0.2);
+  border-top: 1px solid var(--theme-border, rgb(0 0 0 / 0.2));
   font-size: 14px;
 }
 

@@ -9,7 +9,7 @@
 }
 
 .field label {
-  color: #000;
+  color: var(--theme-text, #000);
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -21,11 +21,11 @@
   width: 100%;
   height: 48px;
   padding: 8px;
-  border: 1px solid rgb(0 0 0 / 15%);
+  border: 1px solid var(--theme-border, rgb(0 0 0 / 15%));
   border-radius: 16px;
   outline: none;
   background: transparent;
-  color: #000;
+  color: var(--theme-text, #000);
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -33,8 +33,8 @@
 }
 
 .field input.invalidInput {
-  border-color: #9d0000;
-  color: #9d0000;
+  border-color: var(--theme-error, #9d0000);
+  color: var(--theme-error, #9d0000);
 }
 
 .passwordInputContainer {
@@ -47,12 +47,12 @@
 }
 
 .field input::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--theme-muted, rgba(0, 0, 0, 0.6));
   opacity: 1;
 }
 
 .field input:focus-visible {
-  border-color: #c5e1a5;
+  border-color: var(--theme-accent, #c5e1a5);
 }
 
 .fieldError,
@@ -64,7 +64,7 @@
 
 .fieldError,
 .error {
-  color: #9d0000;
+  color: var(--theme-error, #9d0000);
 }
 
 .actions {
@@ -75,10 +75,10 @@
 .submit {
   min-height: 36px;
   padding: 6px 12px;
-  border: 1px solid #c5e1a5;
+  border: 1px solid var(--theme-accent, #c5e1a5);
   border-radius: 100px;
-  background-color: #c5e1a5;
-  color: #000;
+  background-color: var(--theme-accent, #c5e1a5);
+  color: var(--theme-on-accent, #000);
   font-family: Inter, Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -93,12 +93,13 @@
 
 .submit:hover:not(:disabled),
 .submit:focus-visible:not(:disabled) {
-  background-color: #9db484;
-  border: 1px solid #4e5a42;
+  background-color: var(--theme-accent-hover, #9db484);
+  border: 1px solid var(--theme-focus, #4e5a42);
+  color: var(--theme-on-accent, #000);
 }
 
 .submit:active:not(:disabled) {
   background-color: #3b4331;
-  border: 1px solid #c5e1a5;
+  border: 1px solid var(--theme-accent, #c5e1a5);
   color: #fff;
 }
