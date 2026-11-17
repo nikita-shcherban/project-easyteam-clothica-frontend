@@ -1,7 +1,7 @@
 .page {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 48px 64px 64px;
+  padding: 112px 64px 112px;
 }
 .title {
   min-height: 1.2em;
@@ -19,7 +19,7 @@
 }
 @media (max-width: 1279px) {
   .page {
-    padding: 40px 32px 48px;
+    padding: 64px 32px 64px;
   }
   .layout {
     grid-template-columns: 243px 1fr;
@@ -27,7 +27,7 @@
 }
 @media (max-width: 767px) {
   .page {
-    padding: 32px 20px 40px;
+    padding: 64px 20px 64px;
   }
   .title {
     font-size: 32px;
