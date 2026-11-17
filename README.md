@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clothica — інтернет-магазин одягу
 
-## Getting Started
+Фронтенд командного проєкту EasyTeam на Next.js і TypeScript. Clothica допомагає переглядати колекції одягу, добирати товари за потрібними характеристиками, оформлювати замовлення та керувати особистим кабінетом.
 
-First, run the development server:
+Інтерфейс українською мовою створено за макетом Figma для мобільних пристроїв, планшетів і десктопів.
+
+## Посилання
+
+- [Відкрити сайт](https://project-easyteam-clothica-frontend.vercel.app)
+- [Макет у Figma](https://www.figma.com/design/c5nshg5DfSyuEFOtyWwMcR/Clothica?node-id=9202-59537&t=dMOr2JjcTkL6nr5a-0)
+- [Backend API](https://project-easyteam-2.onrender.com)
+- [Документація API — Swagger](https://project-easyteam-2.onrender.com/api-docs/)
+- [Репозиторій бекенду](https://github.com/nikita-shcherban/project-EasyTeam-2)
+
+## Можливості
+
+- **Головна сторінка:** презентація бренду, популярні категорії й товари, останні відгуки.
+- **Каталог:** фільтрація за категорією, статтю, розміром і ціною, дозавантаження товарів та збереження фільтрів у URL.
+- **Сторінка товару:** фотографії, опис, ціна, рейтинг, вибір розміру й кількості, відгуки покупців.
+- **Кошик:** додавання та видалення позицій, зміна кількості, підрахунок вартості й збереження вмісту між відвідуваннями.
+- **Оформлення замовлення:** форма контактних даних і доставки до відділення Нової пошти.
+- **Авторизація:** реєстрація, вхід за номером телефону та паролем, маска номера й валідація полів.
+- **Особистий кабінет:** персональні дані, їх редагування та історія замовлень.
+- **Підписка:** форма підписки на новини й акції магазину.
+
+## Технології
+
+| Технологія                    | Призначення                                                 |
+| ----------------------------- | ----------------------------------------------------------- |
+| Next.js 16, React 19          | App Router, серверні та клієнтські компоненти, маршрути API |
+| TypeScript                    | Типізація компонентів, даних і запитів                      |
+| TanStack Query                | Отримання, кешування та оновлення серверних даних           |
+| Axios                         | HTTP-запити до бекенду                                      |
+| Zustand                       | Стан авторизації та кошика                                  |
+| Formik, Yup                   | Форми та валідація                                          |
+| React IMask                   | Маска номера телефону                                       |
+| Swiper                        | Слайдери товарів і категорій                                |
+| RC Slider, use-debounce       | Вибір діапазону цін та відкладене оновлення фільтрів        |
+| CSS Modules, modern-normalize | Стилі компонентів і базове оформлення                       |
+| iziToast                      | Спливні повідомлення                                        |
+| ESLint, Prettier              | Стиль і форматування коду                                   |
+| Vercel                        | Розгортання фронтенду                                       |
+
+Шрифти **Nunito Sans** та **Inter** підключені через `next/font`.
+
+## Локальний запуск
+
+Потрібні Node.js **20.9 або новіший**, npm і Git.
+
+### 1. Клонування репозиторію
+
+```bash
+git clone https://github.com/nikita-shcherban/project-easyteam-clothica-frontend.git
+cd project-easyteam-clothica-frontend
+```
+
+### 2. Встановлення залежностей
+
+```bash
+npm ci
+```
+
+### 3. Налаштування середовища
+
+Створіть у корені проєкту файл `.env.local` на основі `.env.example`:
+
+```dotenv
+NEXT_PUBLIC_API_URL=https://project-easyteam-2.onrender.com
+```
+
+`NEXT_PUBLIC_API_URL` містить адресу бекенду без суфікса `/api`. Для локального запуску фронтенду можна використовувати наведений розгорнутий бекенд.
+
+Браузерні запити використовують відносний шлях `/api`. Маршрути в `app/api/` обробляють окремі запити, а правило `rewrites` у `next.config.ts` спрямовує решту на бекенд. При підключенні іншого бекенду узгодьте його адресу в `.env.local` та `rewrites`.
+
+### 4. Запуск сервера розробки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Застосунок буде доступний за адресою [http://localhost:3001](http://localhost:3001).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Команди
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Команда             | Дія                                                    |
+| ------------------- | ------------------------------------------------------ |
+| `npm run dev`       | Запускає сервер розробки на порту 3001                 |
+| `npm run build`     | Створює production-збірку                              |
+| `npm start`         | Запускає готову збірку на порту 3000 за замовчуванням  |
+| `npm run lint`      | Запускає ESLint                                        |
+| `npm run typecheck` | Генерує типи маршрутів Next.js та перевіряє TypeScript |
 
-## Learn More
+Щоб локально запустити production-збірку:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Відкрийте [http://localhost:3000](http://localhost:3000). Для іншого порту використовуйте, наприклад, `npm start -- -p 3001`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Маршрути
 
-## Deploy on Vercel
+| Маршрут           | Сторінка                      |
+| ----------------- | ----------------------------- |
+| `/`               | Головна                       |
+| `/categories`     | Категорії одягу               |
+| `/goods`          | Каталог товарів               |
+| `/goods/[goodId]` | Детальна інформація про товар |
+| `/auth/register`  | Реєстрація                    |
+| `/auth/login`     | Вхід                          |
+| `/profile`        | Особистий кабінет             |
+| `/edit`           | Редагування даних покупця     |
+| `/basket`         | Кошик                         |
+| `/order`          | Оформлення замовлення         |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Кошик відкривається як модальне вікно через перехоплений маршрут App Router. Прямий перехід на `/basket` або оновлення цієї сторінки перенаправляє на `/order`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Структура проєкту
+
+```text
+app/
+├── (auth)/         # Сторінки входу й реєстрації та їхній layout
+├── (main)/         # Каталог, товар, категорії, профіль і замовлення
+├── @modal/         # Паралельний слот для модального кошика
+├── api/            # Серверні обробники API
+├── globals.css     # Глобальні стилі
+├── layout.tsx      # Кореневий layout і провайдери
+└── page.tsx        # Головна сторінка
+components/         # Компоненти сторінок і спільні елементи інтерфейсу
+lib/
+├── api/            # API-клієнти та функції запитів
+├── auth/           # Допоміжна логіка авторизації
+├── hooks/          # React-хуки
+├── store/          # Сховища Zustand
+├── utils/          # Утиліти й константи
+└── validation/     # Схеми валідації форм
+public/             # Статичні зображення та іконки
+types/              # Спільні типи TypeScript
+```
+
+Стилі компонентів розміщені поруч із ними у файлах `*.module.css`. Імпорти з префіксом `@/` посилаються на корінь проєкту.
+
+## Розгортання
+
+Фронтенд розгорнуто на **Vercel**, бекенд — на **Render**.
+
+Для розгортання власної копії імпортуйте репозиторій у Vercel, виберіть Next.js і додайте змінну `NEXT_PUBLIC_API_URL` у налаштування середовища перед збіркою. Команда збірки — `npm run build`. Адреса бекенду в `next.config.ts` має відповідати обраному API.
+
+## Команда
+
+Проєкт створено командою **EasyTeam** у межах фінального командного проєкту GoIT.

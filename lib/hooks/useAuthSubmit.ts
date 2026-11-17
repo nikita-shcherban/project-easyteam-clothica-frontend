@@ -2,14 +2,13 @@
 
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getAuthErrorMessage } from '@/lib/auth/errors';
-import { notifyAuthError } from '@/lib/auth/notify';
 import { useAuthStore } from '@/lib/store/auth-store';
 import type { User } from '@/types/user';
 
 export function useAuthSubmit<Values>(
   authenticate: (values: Values) => Promise<User>,
-  getErrorMessage: (error: unknown) => string = getAuthErrorMessage,
+  getErrorMessage: (error: unknown) => string,
+  notifyError: (message: string) => Promise<void>,
 ) {
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
@@ -28,7 +27,7 @@ export function useAuthSubmit<Values>(
       router.refresh();
     } catch (cause) {
       const message = getErrorMessage(cause);
-      void notifyAuthError(message).catch((notificationError: unknown) => {
+      void notifyError(message).catch((notificationError: unknown) => {
         console.error('Failed to display authentication error notification', {
           notificationError,
         });
