@@ -9,7 +9,6 @@ interface AuthFormProps {
   children: ReactNode;
   submitLabel: string;
   pendingLabel: string;
-  error: string | null;
   redirecting: boolean;
 }
 
@@ -17,7 +16,6 @@ export default function AuthForm({
   children,
   submitLabel,
   pendingLabel,
-  error,
   redirecting,
 }: AuthFormProps) {
   const { isSubmitting, isValidating, submitCount, errors } =
@@ -49,11 +47,6 @@ export default function AuthForm({
       <span role="status" className={styles.srOnly}>
         {busy ? pendingLabel : ''}
       </span>
-      {error && (
-        <p role="alert" className={styles.requestError}>
-          {error}
-        </p>
-      )}
     </Form>
   );
 }

@@ -18,7 +18,7 @@ const initialValues: RegisterUserData = {
 };
 
 export default function RegistrationForm() {
-  const { submit, error, redirecting } = useAuthSubmit(
+  const { submit, redirecting } = useAuthSubmit(
     register,
     getRegistrationErrorMessage,
   );
@@ -77,12 +77,6 @@ export default function RegistrationForm() {
           />
 
           <div className={css.actions}>
-            {error && (
-              <p className={css.error} role="alert">
-                {error}
-              </p>
-            )}
-
             <button
               className={css.submit}
               disabled={!isValid || isSubmitting || redirecting}

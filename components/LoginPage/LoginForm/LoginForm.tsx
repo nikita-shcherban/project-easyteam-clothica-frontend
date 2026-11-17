@@ -18,7 +18,7 @@ import styles from './LoginForm.module.css';
 const initialValues: LoginValues = { phone: '', password: '' };
 
 export default function LoginForm() {
-  const { submit, error, redirecting } = useAuthSubmit(login);
+  const { submit, redirecting } = useAuthSubmit(login);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
@@ -32,7 +32,6 @@ export default function LoginForm() {
       <AuthForm
         submitLabel="Увійти"
         pendingLabel="Входимо…"
-        error={error}
         redirecting={redirecting}
       >
         <LoginPhoneField />
