@@ -10,6 +10,7 @@ import { useAuthSubmit } from '@/lib/hooks/useAuthSubmit';
 import { registrationSchema } from '@/lib/validation/auth';
 import css from './RegistrationForm.module.css';
 import { useState } from 'react';
+import { showToast } from '@/lib/toast';
 
 const initialValues: RegisterUserData = {
   username: '',
@@ -21,6 +22,7 @@ export default function RegistrationForm() {
   const { submit, redirecting } = useAuthSubmit(
     register,
     getRegistrationErrorMessage,
+    (message) => showToast('error', message),
   );
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
