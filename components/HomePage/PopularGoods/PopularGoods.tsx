@@ -213,7 +213,7 @@ export default function PopularGoods() {
           </Link>
         </div>
 
-        {isInitialLoading && <p>Завантаження товарів...</p>}
+        {isInitialLoading && <Loader />}
 
         {error && <p>Не вдалося завантажити товари.</p>}
 
@@ -338,11 +338,7 @@ export default function PopularGoods() {
                 </div>
               </div>
 
-              {isFetchingNextPage && (
-                <p aria-live="polite">
-                  Завантаження наступних товарів...
-                </p>
-              )}
+              {isFetchingNextPage && <Loader />}
             </div>
           )}
       </div>
