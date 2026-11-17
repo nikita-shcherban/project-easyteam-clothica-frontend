@@ -1,0 +1,263 @@
+/* ==========================================================================
+   PersonalPage Component — Mobile First styles (320px/375px -> 768px -> 1440px)
+   Task #50: Редагування профілю покупця
+   ========================================================================== */
+
+/* --- Mobile (base styles, default for 320px - 767px) --- */
+.page {
+  width: 100%;
+  min-height: calc(100vh - 144px);
+  background-color: #f3f9ed;
+  padding-block: 32px 48px;
+}
+
+.container {
+  width: 100%;
+  max-width: 375px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4e5a42;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.backLink:hover {
+  color: #000000;
+  transform: translateX(-2px);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.title {
+  font-family: var(--font-nunito-sans), 'Nunito Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #000000;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background-color: #ffffff;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #8eaa76;
+  box-shadow: 0 0 0 2px rgba(197, 225, 165, 0.45);
+}
+
+.inputError {
+  border-color: #a12622;
+}
+
+.errorText {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 12px;
+  color: #a12622;
+  margin-top: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.submitButton,
+.cancelButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 8px 24px;
+  border-radius: 100px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.submitButton {
+  background-color: #c5e1a5;
+  color: #000000;
+  border: 1px solid #c5e1a5;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #b0d28d;
+  border-color: #b0d28d;
+  transform: translateY(-1px);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  border: 1px solid transparent;
+}
+
+.cancelButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.cancelButton:active {
+  transform: translateY(0);
+}
+
+/* --- Tablet (min-width: 768px) --- */
+@media screen and (min-width: 768px) {
+  .page {
+    padding-block: 48px 64px;
+  }
+
+  .container {
+    max-width: 768px;
+    padding-inline: 32px;
+  }
+
+  .card {
+    padding: 36px 32px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 36px;
+    letter-spacing: -0.4px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  .fieldsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .fullWidthField {
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .submitButton,
+  .cancelButton {
+    width: auto;
+    min-width: 160px;
+  }
+}
+
+/* --- Desktop (min-width: 1440px) --- */
+@media screen and (min-width: 1440px) {
+  .page {
+    padding-block: 64px 96px;
+  }
+
+  .container {
+    max-width: 1440px;
+    padding-inline: 64px;
+  }
+
+  .card {
+    max-width: 840px;
+    margin-inline: auto;
+    padding: 48px 44px;
+  }
+
+  .title {
+    font-size: 40px;
+    letter-spacing: -0.5px;
+  }
+}
