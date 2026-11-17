@@ -110,8 +110,7 @@ export const useBasketStore = create<BasketState>()(
 );
 
 // Селектори: кількість для бейджа в Header і сума
-export const selectBasketCount = (s: BasketState) =>
-  s.items.reduce((sum, i) => sum + i.quantity, 0);
+export const selectBasketCount = (s: BasketState) => s.items.length;
 
 export const selectBasketTotal = (s: BasketState) =>
   s.items.reduce((sum, i) => sum + i.price * i.quantity, 0);

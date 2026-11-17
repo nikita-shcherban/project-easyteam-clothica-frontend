@@ -6,7 +6,7 @@
 
 .container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 375px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -23,17 +23,19 @@
 /* Tablet */
 @media screen and (min-width: 768px) {
   .container {
+    max-width: 768px;
     padding: 0 32px;
   }
 }
 
 /* Desktop */
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1440px) {
   .section {
     padding: 112px 0;
   }
 
   .container {
+    max-width: 1440px;
     padding: 0 64px;
   }
 

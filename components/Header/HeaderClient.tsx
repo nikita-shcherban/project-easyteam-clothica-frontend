@@ -61,9 +61,7 @@ export default function HeaderClient({
     () => initialUser,
   );
   const setUser = useAuthStore((state) => state.setUser);
-  const count = useBasketStore((state) =>
-    state.items.reduce((total, item) => total + item.quantity, 0),
-  );
+  const count = useBasketStore((state) => state.items.length);
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const menuOpen = menuPath === pathname;
   const [loggingOut, setLoggingOut] = useState(false);

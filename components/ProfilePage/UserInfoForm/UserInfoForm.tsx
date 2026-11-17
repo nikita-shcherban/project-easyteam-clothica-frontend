@@ -48,7 +48,7 @@ export default function UserInfoForm() {
 
   const formik = useFormik({
     initialValues: {
-      name: user?.name ?? '',
+      name: user?.name || user?.username || '',
       surname: user?.surname ?? '',
       phone: user?.phone ?? '',
       city: user?.city ?? '',
