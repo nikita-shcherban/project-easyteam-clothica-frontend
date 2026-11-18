@@ -1,16 +1,18 @@
 .section {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0;
   background-color: #f3f9ed;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  max-width: 1312px;
-  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Header */
@@ -336,8 +338,9 @@
 /* Tablet */
 
 @media (min-width: 768px) {
-  .section {
-    padding: 0 32px;
+    .section {
+    width: 100%;
+    max-width: 768px;
   }
 
   .header {
@@ -430,8 +433,9 @@
 /* Desktop */
 
 @media (min-width: 1440px) {
-  .section {
-    padding: 0 64px;
+   .section {
+    padding: 0;
+    max-width: 1440px;
   }
 
   .title {
