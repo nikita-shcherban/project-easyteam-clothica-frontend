@@ -1,7 +1,7 @@
 .section {
   display: flex;
   justify-content: center;
-  padding: 48px 20px;
+  padding: 0 20px;
   background-color: #f3f9ed;
 }
 
@@ -337,7 +337,7 @@
 
 @media (min-width: 768px) {
   .section {
-    padding: 48px 32px;
+    padding: 0 32px;
   }
 
   .header {
@@ -431,7 +431,7 @@
 
 @media (min-width: 1440px) {
   .section {
-    padding: 80px 64px;
+    padding: 0 64px;
   }
 
   .title {
