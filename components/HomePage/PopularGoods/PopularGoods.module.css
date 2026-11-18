@@ -1,7 +1,7 @@
 .section {
   display: flex;
   justify-content: center;
-  padding: 0 20px;
+  padding: 48px 0;
   background-color: #f3f9ed;
 }
 
@@ -9,32 +9,26 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1312px;
   gap: 24px;
+  max-width: 375px;
+  margin-inline: auto;
+  padding-inline: 20px;
 }
 
 /* Header */
 
 .header {
   display: flex;
-  flex-direction: row;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  gap: 16px;
 }
 
 .title {
-  width: 227px;
-  height: 86px;
-  margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   font-size: 36px;
-  line-height: 120%;
+  line-height: 1.2;
   letter-spacing: -0.01em;
-  color: #000;
-  flex: none;
+  font-family: var(--font-nunito-sans), sans-serif;
 }
 
 .allGoodsLink {
@@ -336,8 +330,9 @@
 /* Tablet */
 
 @media (min-width: 768px) {
-  .section {
-    padding: 0 32px;
+  .container {
+    max-width: 768px;
+    padding-inline: 32px;
   }
 
   .header {
@@ -431,6 +426,11 @@
 
 @media (min-width: 1440px) {
   .section {
+    padding: 80px 0;
+  }
+
+  .container {
+    max-width: 1440px;
     padding: 0 64px;
   }
 
