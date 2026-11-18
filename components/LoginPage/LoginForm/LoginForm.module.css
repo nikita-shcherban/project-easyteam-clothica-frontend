@@ -93,9 +93,9 @@ input.normalColor {
 }
 
 .submit:active:not(:disabled) {
-  background-color: #3b4331;
+  background-color: var(--theme-accent-active, #3b4331);
   border: 1px solid var(--theme-accent, #c5e1a5);
-  color: #fff;
+  color: var(--theme-on-accent-active, #fff);
 }
 
 .submit:disabled {

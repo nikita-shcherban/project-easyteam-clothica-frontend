@@ -33,8 +33,9 @@
 }
 
 .loadMoreButton:active {
-  background-color: #3b4331;
-  border-color: #3b4331;
+  background-color: var(--theme-accent-active, #3b4331);
+  border-color: var(--theme-accent-active, #3b4331);
+  color: var(--theme-on-accent-active, #fff);
 }
 
 /* --- Tablet --- */

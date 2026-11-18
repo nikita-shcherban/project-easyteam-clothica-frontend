@@ -55,8 +55,8 @@
 }
 
 .allButton:active {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background-color: var(--theme-accent-active, rgb(0 0 0 / 50%));
+  color: var(--theme-on-accent-active, #fff);
 }
 
 .item:nth-child(n + 2) {

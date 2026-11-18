@@ -49,8 +49,8 @@
   border-bottom: 1px solid #000;
 }
 .categories .active {
-  color: #9db484;
-  border-bottom: 1px solid #4e5a42;
+  color: var(--theme-accent-hover, #9db484);
+  border-bottom: 1px solid var(--theme-border-strong, #4e5a42);
 }
 .group {
   padding: 24px 0;
@@ -81,7 +81,7 @@
   text-decoration: underline;
 }
 .option:active {
-  color: #4e5a42;
+  color: var(--theme-text, #4e5a42);
 }
 .checkbox,
 .radio {

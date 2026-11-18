@@ -54,12 +54,13 @@
   font-size: 16px;
 }
 .btn:hover {
-  background-color: rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: var(--theme-hover, rgb(0 0 0 / 15%));
+  border: 1px solid var(--theme-border-strong, rgb(0 0 0 / 50%));
 }
 .btn:active {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0);
+  background-color: var(--theme-accent-active, #3b4331);
+  color: var(--theme-on-accent-active, #fff);
+  border-color: transparent;
 }
 @media (min-width: 1440px) {
   .info {
