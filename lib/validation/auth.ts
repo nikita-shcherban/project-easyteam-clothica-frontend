@@ -32,7 +32,7 @@ export const registrationSchema = yup.object({
     .test(
       'latin-cyrillic-only',
       'Дозволені лише літери латиниці та кирилиці',
-      (value) => !value || /^[A-Za-zА-Яа-я]+$/.test(value.trim()),
+      (value) => !value || /^[\p{L}']+$/u.test(value.trim()),
     )
     .trim()
     .required('Введіть своє ім’я.'),
@@ -57,7 +57,7 @@ export const registrationSchema = yup.object({
     .test(
       'uppercase-required',
       'Має містити хоча б одну велику літеру',
-      (value) => !value || /[A-ZА-Я]/.test(value),
+      (value) => !value || /\p{Lu}/u.test(value),
     )
     .test(
       'special-character-required',
@@ -67,7 +67,7 @@ export const registrationSchema = yup.object({
     .test(
       'lowercase-required',
       'Має містити хоча б одну малу літеру',
-      (value) => !value || /[a-zа-я]/.test(value),
+      (value) => !value || /\p{Ll}/u.test(value),
     )
     .required('Введіть пароль.'),
 });
